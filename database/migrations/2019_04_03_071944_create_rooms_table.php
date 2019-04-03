@@ -20,7 +20,6 @@ class CreateRoomsTable extends Migration
             $table->string('name', 255);
             $table->string('note', 255)->nullable();
             $table->timestamps();
-
             $table->foreign('cinema_id')
                 ->references('id')->on('cinemas')
                 ->onUpdate('cascade')
