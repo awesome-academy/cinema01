@@ -1,13 +1,13 @@
 <!-- Banner -->
 <div class="banner-top">
-    <img alt='top banner' src="{{ asset('bower_components/xp_css/images/1600x90.png') }}">
+    <img alt='top banner' src="{{ asset(config('app.image_url') .'1600x90.png') }}">
 </div>
 <!-- Header section -->
 <header class="header-wrapper">
     <div class="container">
         <!-- Logo link-->
         <a href="" class="logo">
-            <img alt='logo' src="{{ asset('bower_components/xp_css/images/logo.png') }}">
+            <img alt='logo' src="{{ asset(config('app.image_url') .'logo.png') }}">
         </a> 
         <!-- Main website navigation-->
         <nav id="navigation-box">
