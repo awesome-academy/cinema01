@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Ticket extends Model
+{
+    protected $fillable = [
+        'code',
+    ];
+
+    public function bill()
+    {
+    	return $this->belongsTo('App\Models\Bill');
+    }
+
+    public function seatCol()
+    {
+    	return $this->belongsTo('App\Models\Seat_col');
+    }
+
+    public function showtime()
+    {
+    	return $this->belongsTo('App\Models\Showtime');
+    }
+}

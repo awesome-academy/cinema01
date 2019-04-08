@@ -21,7 +21,6 @@ class CreateTicketsTable extends Migration
             $table->bigInteger('showtime_id')->unsigned();           
             $table->string('code', 255);
             $table->timestamps();
-
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onUpdate('cascade')

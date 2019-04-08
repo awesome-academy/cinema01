@@ -19,7 +19,6 @@ class CreataVotesTable extends Migration
             $table->bigInteger('user_id')->unsigned();            
             $table->integer('point');
             $table->timestamps();
-
             $table->foreign('movie_id')
                 ->references('id')->on('movies')
                 ->onUpdate('cascade')
