@@ -10,5 +10,5 @@
 |
 */
 // Home page
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 Route::resource('movie', 'MovieController');

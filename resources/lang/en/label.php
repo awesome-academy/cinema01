@@ -44,9 +44,9 @@ return [
 	'mega_cinema' => 'Cinema',
 	'mega_movie' => 'Movie',
 	'find' => 'find',
-	'find_location' => 'your city',
-	'find_cinema' => 'suitable cimema',
-	'find_movie' => 'by name',
+	'find_location' => ' your city',
+	'find_cinema' => ' suitable cimema',
+	'find_movie' => ' by name',
 	'now_cinema' => 'Now in the cinema',
 	//footer
 	'by' => 'By :company',
