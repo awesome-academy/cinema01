@@ -12,12 +12,18 @@
     <!-- Roboto -->
     <link href='{{ asset('bower_components/css/index') }}' rel='stylesheet' type='text/css'>
     <!-- Open Sans -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:800italic' rel='stylesheet' type='text/css'>
+    <link href='{{ asset('bower_components/css/index') }}' rel='stylesheet' type='text/css'>
     <!-- Stylesheets -->
+    <!-- jQuery UI --> 
+    <link href="{{ asset('bower_components/jquery-ui1/index.css') }}" rel="stylesheet">
     <!-- Mobile menu -->
     <link href="{{ asset('bower_components/xp_css/css/gozha-nav.css') }}" rel="stylesheet" />
     <!-- Select -->
     <link href="{{ asset('bower_components/xp_css/css/external/jquery.selectbox.css') }}" rel="stylesheet" />
+    <!-- Swiper slider -->
+    <link href="{{ asset('bower_components/xp_css/css/external/idangerous.swiper.css') }}" rel="stylesheet" />
+    <!-- Magnific-popup -->
+    <link href="{{ asset('bower_components/xp_css/css/external/magnific-popup.css') }}" rel="stylesheet" />
     <!-- REVOLUTION BANNER CSS SETTINGS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/xp_css/rs-plugin/css/settings.css') }}" media="screen" />
     <!-- Custom -->
@@ -56,11 +62,21 @@
         $(document).ready(function() {
             init_Home();
         });
+        $(document).ready(function() {
+                init_MoviePage();
+                 init_MoviePageFull();
+            });
     </script>
     <!-- jQuery REVOLUTION Slider -->
     <script type="text/javascript" src="{{ asset('bower_components/xp_css/rs-plugin/js/jquery.themepunch.plugins.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bower_components/xp_css/rs-plugin/js/jquery.themepunch.revolution.min.js') }}"></script>
     <!-- Stars rate -->
     <script src="{{ asset('bower_components/xp_css/js/external/jquery.raty.js') }}"></script>
+    <!-- jQuery UI -->
+    <script src="{{ asset('bower_components/jquery-ui/index.js') }}"></script>
+    <!-- Swiper slider -->
+    <script src="{{ asset('bower_components/xp_css/js/external/idangerous.swiper.min.js') }}"></script>
+    <!-- Magnific-popup -->
+    <script src="{{ asset('bower_components/xp_css/js/external/jquery.magnific-popup.min.js') }}"></script>
 </body>
 </html>
