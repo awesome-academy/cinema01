@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Movie;
+
+use App\Models\Vote;
+
+use DB;
+
 class HomeController extends Controller
 {
     /**
@@ -12,8 +18,19 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('frontend.homepages.home');
+    {   
+        $best = Vote::with('movie')
+                    ->groupBy('movie_id')
+                    ->select('movie_id', DB::raw('AVG( votes.point ) as point'))
+                    ->orderBy('point', 'DESC')
+                    ->take(config('const.best_movie'))
+                    ->get();
+        $new = Movie::with('votes')
+                    ->orderBy('day_start', 'DESC')
+                    ->take(config('const.new_movie'))
+                    ->get();
+
+        return view('frontend.homepages.home', compact('best', 'new'));
     }
 
     /**

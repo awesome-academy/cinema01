@@ -8,7 +8,7 @@
             <div class="movie__info">
                 <div class="col-sm-4 col-md-3 movie-mobile">
                     <div class="movie__images">
-                        <span class="movie__rating">{{ __('label.movie_text', ['data' => $vote]) }}</span>
+                        <span class="movie__rating">{{ __('label.movie_text', ['data' => round($vote, 1)]) }}</span>
                         <img alt='' src="{{ asset(config('app.image_url') .'526x773.png') }}">
                         <div class="swiper-container play_btn">
                           <div class="swiper-wrapper" >

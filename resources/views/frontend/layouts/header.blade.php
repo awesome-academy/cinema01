@@ -1,18 +1,18 @@
 <!-- Banner -->
 <div class="banner-top">
-    <img alt='top banner' src="{{ asset(config('app.image_url') .'1600x90.png') }}">
+    <img alt='top banner' src="{{ asset(config('app.image_url') . '1600x90.png') }}">
 </div>
 <!-- Header section -->
 <header class="header-wrapper">
     <div class="container">
         <!-- Logo link-->
-        <a href="" class="logo">
-            <img alt='logo' src="{{ asset(config('app.image_url') .'logo.png') }}">
+        <a href="{{ route('home') }}" class="logo">
+            <img alt='logo' src="{{ asset(config('app.image_url') . 'logo.png') }}">
         </a> 
         <!-- Main website navigation-->
         <nav id="navigation-box">
             <!-- Toggle for mobile menu mode -->
-            <a href="#" id="navigation-toggle">
+            <a href="" id="navigation-toggle">
                 <span class="menu-icon">
                     <span class="icon-toggle" role="button" aria-label="Toggle Navigation">
                       <span class="lines"></span>
