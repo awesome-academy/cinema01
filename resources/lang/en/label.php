@@ -4,8 +4,8 @@ return [
 	'title' => 'Book a ticket',
 	'book' => 'Book a ticket',
 	'movie' => 'MOVIE',
-	'now' => 'Now in the cinema',
-	'soon' => 'Ending soon',
+	'now' => 'NOW SHOWING',
+	'soon' => 'COMMING SOON',
 	'support' => 'SUPPORT',
 	'login' => 'LOG IN',
 	//content
