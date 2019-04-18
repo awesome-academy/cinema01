@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Movie;
 
-use App\Models\Cinema;
+use DB;
 
 class MovieController extends Controller
 {
@@ -88,5 +88,23 @@ class MovieController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    protected function movie(){
+        $movie = Movie::all();
+
+        return $movie;
+    }
+    public function nowShowing()
+    {
+        $movie = $this->movie()->where('status', 0);
+
+        return view('frontend.movie.now-showing', compact('movie'));
+    }
+    public function commingSoon()
+    {
+        $movie = $this->movie()->where('status', 1);
+
+        return view('frontend.movie.comming-soon', compact('movie'));
     }
 }

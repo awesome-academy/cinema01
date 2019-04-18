@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use View;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::composer(['frontend.layouts.header'], 'App\Http\ViewComposers\MenuComposer');
     }
 }
