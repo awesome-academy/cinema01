@@ -8,6 +8,9 @@ return [
 	'soon' => 'COMMING SOON',
 	'support' => 'SUPPORT',
 	'login' => 'LOG IN',
+	'dashboard' => 'Dashboard',
+	'hi' => 'Hi :data',
+	'search_for' => 'Search for...',
 	//content
 	'slide_name' => ':data',
 	'from' => 'form',
@@ -48,6 +51,11 @@ return [
 	'find_cinema' => ' suitable cimema',
 	'find_movie' => ' by name',
 	'now_cinema' => 'Now in the cinema',
+	'id' => 'Id',
+	'name' => 'Name',
+	'address' => 'Address',
+	'created_at' => 'Created_at',
+	'action' => 'Action',
 	//footer
 	'by' => 'By :company',
 	'web-name' => 'A.MOVIE',
