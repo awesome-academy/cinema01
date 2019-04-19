@@ -21,6 +21,9 @@
     "font-awesome": "4.0.3",
     "css": "http://fonts.googleapis.com/css?family=Open+Sans:800italic",
     "jquery-ui1": "http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css",
-    "jquery-ui": "http://code.jquery.com/ui/1.10.4/jquery-ui.js"
+    "jquery-ui": "http://code.jquery.com/ui/1.10.4/jquery-ui.js",
+    "admin_css": "https://github.com/ahxtah1996/admin_css.git",
+    "fontawesome": "5.7.0",
+    "jquery": "http://code.jquery.com/jquery.js"
   }
 }
