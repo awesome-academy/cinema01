@@ -16,4 +16,3 @@ Route::get('now-showing', 'MovieController@nowShowing')->name('now-showing');
 Route::get('comming-soon', 'MovieController@commingSoon')->name('comming-soon');
 Route::get('/admin', 'AdminHomeController@index')->name('admin-home');
 Route::resource('/admin/cinema', 'CinemaController');
-Route::get('/admin/cinema.data', 'CinemaController@anyData')->name('cinema.data');
