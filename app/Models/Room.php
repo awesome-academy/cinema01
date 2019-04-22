@@ -8,6 +8,8 @@ class Room extends Model
 {
     protected $fillable = [
         'name',
+        'cinema_id',
+        'room_type_id',
         'note',
     ];
 
@@ -21,9 +23,9 @@ class Room extends Model
         return $this->hasMany('App\Models\Seat_row');
     }
 
-    public function roomTypes()
+    public function roomType()
     {
-        return $this->hasMany('App\Models\Room_type');
+        return $this->belongsTo('App\Models\Room_type');
     }
 
     public function showtimes()

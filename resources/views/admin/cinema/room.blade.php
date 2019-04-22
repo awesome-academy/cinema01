@@ -1,13 +1,14 @@
 @extends('admin.layouts.master')
 @section('content')
 <div class="container">
-    <a class="btn btn-success" href="javascript:void(0)" id="createNewCinema">{{ __('label.createNewCinema') }}</a><a id="mess"></a>
+    <a class="btn btn-success" href="javascript:void(0)" id="createNewRoom">{{ __('label.createNewRoom') }}</a><a id="mess"></a>
     <table class="table table-bordered data-table">
         <thead>
             <tr>
                 <th>{{ __('label.id') }}</th>
+                <th>{{ __('label.cinemaName') }}</th>
+                <th>{{ __('label.roomType') }}</th>
                 <th>{{ __('label.name') }}</th>
-                <th>{{ __('label.address') }}</th>
                 <th>{{ __('label.note') }}</th>
                 <th>{{ __('label.created_at') }}</th>
                 <th>{{ __('label.updated_at') }}</th>
@@ -25,18 +26,32 @@
                 <h4 class="modal-title" id="modelHeading"></h4>
             </div>
             <div class="modal-body">
-                <form id="cinemaForm" name="cinemaForm" class="form-horizontal">
-                   <input type="hidden" name="cinema_id" id="cinema_id">
+                <form id="roomForm" name="roomForm" class="form-horizontal">
+                    <input type="hidden" name="room_id" id="room_id">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <select id="cinema_id" name="cinema_id">
+                                <option value=''>{{ __('label.choseCinemaName') }}</option>
+                                @foreach ($cinemas as $data)
+                                    <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <select id="room_type_id" name="room_type_id">
+                                <option value=''>{{ __('label.choseRoomType') }}</option>
+                                @foreach ($room_type as $data)
+                                    <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">{{ __('label.name') }}</label>
                         <div class="col-sm-12">
                             <input type="text" class="form-control" id="name" name="name" placeholder="{{ __('label.enterName') }}" value="" maxlength="50" required="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ __('label.address') }}</label>
-                        <div class="col-sm-12">
-                            <textarea id="address" name="address" required="" placeholder="{{ __('label.enterAddress') }}" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -66,33 +81,35 @@
     var table = $('.data-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('cinema.index') }}",
+        ajax: "{{ route('room.index') }}",
         columns: [
             {data: 'id', name: 'id'},
+            {data: 'cinema.name', name: 'cinema.name'},
+            {data: 'room_type.name', name: 'room_type.name'},
             {data: 'name', name: 'name'},
-            {data: 'address', name: 'address'},
             {data: 'note', name: 'note'},
             {data: 'created_at', name: 'created_at'},
             {data: 'updated_at', name: 'updated_at'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
     });
-    $('#createNewCinema').click(function () {
-        $('#saveBtn').val("create-cinema");
-        $('#cinema_id').val('');
-        $('#cinemaForm').trigger("reset");
-        $('#modelHeading').html("{{ __('label.createNewCinema') }}");
+    $('#createNewRoom').click(function () {
+        $('#saveBtn').val("create-room");
+        $('#room_id').val('');
+        $('#roomForm').trigger("reset");
+        $('#modelHeading').html("{{ __('label.createNewRoom') }}");
         $('#ajaxModel').modal('show');
     });
-    $('body').on('click', '.editCinema', function () {
-        var cinema_id = $(this).data('id');
-        $.get("{{ route('cinema.index') }}" +'/' + cinema_id + '/edit', function (data) {
-            $('#modelHeading').html("{{ __('label.editCinema') }}");
-            $('#saveBtn').val("edit-user");
+    $('body').on('click', '.editRoom', function () {
+        var room_id = $(this).data('id');
+        $.get("{{ route('room.index') }}" +'/' + room_id + '/edit', function (data) {
+            $('#modelHeading').html("{{ __('label.editRoom') }}");
+            $('#saveBtn').val("edit-room");
             $('#ajaxModel').modal('show');
-            $('#cinema_id').val(data.id);
+            $('#room_id').val(data.id);
+            $('#cinema_id').val(data.cinema_id);
+            $('#room_type_id').val(data.room_type_id);
             $('#name').val(data.name);
-            $('#address').val(data.address);
             $('#note').val(data.note);
         })
     });
@@ -100,12 +117,12 @@
         e.preventDefault();
         $(this).html('{{ __('label.sending') }}');
         $.ajax({
-            data: $('#cinemaForm').serialize(),
-            url: "{{ route('cinema.store') }}",
+            data: $('#roomForm').serialize(),
+            url: "{{ route('room.store') }}",
             type: "POST",
             dataType: 'json',
             success: function (data) {
-                $('#cinemaForm').trigger("reset");
+                $('#roomForm').trigger("reset");
                 $('#ajaxModel').modal('hide');
                 table.draw();
                 document.getElementById("mess").innerHTML = data.success;
@@ -116,13 +133,13 @@
             }
         });
     });
-    $('body').on('click', '.deleteCinema', function () {
-        var cinema_id = $(this).data("id");
+    $('body').on('click', '.deleteRoom', function () {
+        var room_id = $(this).data("id");
         if (confirm("{{ __('label.confirmDelete') }}"))
         {
             $.ajax({
                 type: "DELETE",
-                url: "{{ route('cinema.store') }}" + '/' + cinema_id,
+                url: "{{ route('room.store') }}" + '/' + room_id,
                 success: function (data) {
                     table.draw();
                     document.getElementById("mess").innerHTML = data.success;
@@ -132,6 +149,7 @@
                 }
             });
         }
+        
     });    
 });
 </script>

@@ -11,9 +11,9 @@ class Room_type extends Model
         'note',
     ];
     
-    public function room()
+    public function rooms()
     {
-        return $this->belongsTo('App\Models\Room');
+        return $this->hasMany('App\Models\Room');
     }
 
     public function seatPrices()
