@@ -15,8 +15,23 @@ class CinemaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
+            $data = Cinema::latest()->get();
+
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+                            $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editCinema">Edit</a>';
+                            $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-danger btn-sm deleteCinema">Delete</a>';
+
+                            return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+
         return view('admin.cinema.cinema');
     }
 
@@ -38,7 +53,12 @@ class CinemaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Cinema::updateOrCreate(['id' => $request->cinema_id],
+        ['name' => $request->name,
+        'address' => $request->address,
+        'note' => $request->note]);  
+
+        return response()->json(['success' => __('label.cinemaSave')]);
     }
 
     /**
@@ -60,7 +80,9 @@ class CinemaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cinema = Cinema::findOrFail($id);
+
+        return response()->json($cinema);
     }
 
     /**
@@ -83,15 +105,8 @@ class CinemaController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
-    public function anyData()
-    {
-        return Datatables::of(Cinema::query())
-            ->addColumn('action', function ($cinema) {
-                return '<a href="' . route('cinema.edit', $cinema->id) . '" class="btn btn-xs btn-warning"><i class="fa fa-eye"></i> View</a> <a href="' . route('cinema.destroy', $cinema->id) . '" class="btn btn-xs btn-danger btn-delete"><i class="fa fa-times"></i> Delete</a>';
-            })
-            ->rawColumns(['action'])
-            ->make(true);
+        Cinema::findOrFail($id)->delete();
+
+        return response()->json(['success' => __('label.cinemaDel')]);
     }
 }

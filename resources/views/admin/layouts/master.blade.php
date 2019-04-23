@@ -4,14 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
+    {{-- <meta name="description" content=""> --}}
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ __('label.title') }}</title>
     <link rel="stylesheet" href="{{ asset('bower_components/jquery.dataTables.min/index.css') }}">
     <!-- Custom fonts for this template-->
     <link href="{{ asset('bower_components/fontawesome/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template-->
     <link href="{{ asset('bower_components/admin_css/css/sb-admin.css') }}" rel="stylesheet">
+    <!-- DataTables -->
+    <link href="{{ asset('bower_components/dataTables.bootstrap4.min/index.css') }}" rel="stylesheet">
 </head>
 <body id="page-top">
     @include('admin.layouts.header')
@@ -43,11 +46,15 @@
     <!-- Custom scripts for all pagsidebar -->
     <script src="{{ asset('bower_components/admin_css/js/sb-admin.min.js') }}"></script>
     <!-- jQuery -->
-    <script src="{{ asset('bower_components/jquery/index.css') }}"></script>
-     <!-- DataTables -->
+    <script src="{{ asset('bower_components/jquery/index.js') }}"></script>
+    <!-- DataTables -->
     <script src="{{ asset('bower_components/jquery.dataTables.min.js/index.js') }}"></script>
+    <script src="{{ asset('bower_components/dataTables.bootstrap4.min.js/index.js') }}"></script>
     <!-- Bootstrap JavaScript -->
     <script src="{{ asset('bower_components/bootstrap.min/index.js') }}"></script>
+    <script src="{{ asset('bower_components/bootstrap.min.4.1.3/index.js') }}"></script>
+    <!-- Jquery Validate -->
+    <script src="{{ asset('bower_components/jquery.validate/index.js') }}"></script>
     <!-- App scripts -->
     @stack('scripts')
 </body>
