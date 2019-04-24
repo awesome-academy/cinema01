@@ -27,8 +27,8 @@ class RoomController extends Controller
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
-                            $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editRoom">Edit</a>';
-                            $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-danger btn-sm deleteRoom">Delete</a>';
+                            $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" class="edit btn btn-primary btn-sm editRoom">' . __('label.edit') . '</a>';
+                            $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteRoom">' . __('label.delete') . '</a>';
 
                             return $btn;
                     })
@@ -59,11 +59,16 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        Room::updateOrCreate(['id' => $request->room_id],
-        ['name' => $request->name,
-        'cinema_id' => $request->cinema_id,
-        'room_type_id' => $request->room_type_id,
-        'note' => $request->note]);  
+        Room::updateOrCreate(
+        [
+            'id' => $request->room_id,
+        ],
+        [
+            'name' => $request->name,
+            'cinema_id' => $request->cinema_id,
+            'room_type_id' => $request->room_type_id,
+            'note' => $request->note,
+        ]);
     
         return response()->json(['success' => __('label.cinemaSave')]);
     }

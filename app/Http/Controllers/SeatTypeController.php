@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Cinema;
+use App\Models\Seat_type;
 
 use Yajra\Datatables\Datatables;
 
-class CinemaController extends Controller
+class SeatTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,13 +18,13 @@ class CinemaController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Cinema::latest()->get();
+            $data = Seat_type::latest()->get();
 
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
-                            $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" class="edit btn btn-primary btn-sm editCinema">' . __('label.edit') . '</a>';
-                            $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteCinema">' . __('label.delete') . '</a>';
+                            $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editSeatType">' . __('label.edit') . '</a>';
+                            $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteSeatType">' . __('label.delete') . '</a>';
 
                             return $btn;
                     })
@@ -32,7 +32,7 @@ class CinemaController extends Controller
                     ->make(true);
         }
 
-        return view('admin.cinema.cinema');
+        return view('admin.cinema.seat_type');
     }
 
     /**
@@ -53,15 +53,14 @@ class CinemaController extends Controller
      */
     public function store(Request $request)
     {
-        Cinema::updateOrCreate(
+        Seat_type::updateOrCreate(
         [
-            'id' => $request->cinema_id,
+            'id' => $request->seat_type_id,
         ],
         [
             'name' => $request->name,
-            'address' => $request->address,
             'note' => $request->note,
-        ]);
+        ]);  
 
         return response()->json(['success' => __('label.cinemaSave')]);
     }
@@ -85,7 +84,7 @@ class CinemaController extends Controller
      */
     public function edit($id)
     {
-        $cinema = Cinema::findOrFail($id);
+        $cinema = Seat_type::findOrFail($id);
 
         return response()->json($cinema);
     }
@@ -110,7 +109,7 @@ class CinemaController extends Controller
      */
     public function destroy($id)
     {
-        Cinema::findOrFail($id)->delete();
+        Seat_type::findOrFail($id)->delete();
 
         return response()->json(['success' => __('label.cinemaDel')]);
     }
