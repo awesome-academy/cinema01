@@ -17,5 +17,6 @@ $factory->define(App\Models\Movie::class, function (Faker $faker) {
         'trailer' => $faker->text(255),
         'created_at' => new DateTime,
         'updated_at' => new DateTime,
+        'status' => $faker->numberBetween(0, 1),
     ];
 });
