@@ -18,3 +18,4 @@ Route::get('/admin', 'AdminHomeController@index')->name('admin-home');
 Route::resource('/admin/cinema', 'CinemaController');
 Route::resource('/admin/room', 'RoomController');
 Route::resource('/admin/seat_type', 'SeatTypeController');
+Route::resource('/admin/room_type', 'RoomTypeController');

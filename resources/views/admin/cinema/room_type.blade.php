@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 @section('content')
 <div class="container">
-    <a class="btn btn-success" href="javascript:void(0)" id="createSeatType">{{ __('label.createSeatType') }}</a><a id="mess"></a>
+    <a class="btn btn-success" href="javascript:void(0)" id="createRoomType">{{ __('label.createRoomType') }}</a><a id="mess"></a>
     <table class="table table-bordered data-table">
         <thead>
             <tr>
@@ -24,8 +24,8 @@
                 <h4 class="modal-title" id="modelHeading"></h4>
             </div>
             <div class="modal-body">
-                <form id="seatTypeForm" name="seatTypeForm" class="form-horizontal">
-                   <input type="hidden" name="seat_type_id" id="seat_type_id">
+                <form id="roomTypeForm" name="roomTypeForm" class="form-horizontal">
+                   <input type="hidden" name="room_type_id" id="room_type_id">
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">{{ __('label.name') }}</label>
                         <div class="col-sm-12">
@@ -59,7 +59,7 @@
     var table = $('.data-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('seat_type.index') }}",
+        ajax: "{{ route('room_type.index') }}",
         columns: [
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
@@ -69,20 +69,20 @@
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
     });
-    $('#createSeatType').click(function () {
-        $('#saveBtn').val("create-seat_type");
-        $('#seat_type_id').val('');
-        $('#seatTypeForm').trigger("reset");
-        $('#modelHeading').html("{{ __('label.createSeatType') }}");
+    $('#createRoomType').click(function () {
+        $('#saveBtn').val("create-room_type");
+        $('#room_type_id').val('');
+        $('#roomTypeForm').trigger("reset");
+        $('#modelHeading').html("{{ __('label.createRoomType') }}");
         $('#ajaxModel').modal('show');
     });
-    $('body').on('click', '.editSeatType', function () {
-        var seat_type_id = $(this).data('id');
-        $.get("{{ route('seat_type.index') }}" + '/' + seat_type_id + '/edit', function (data) {
+    $('body').on('click', '.editRoomType', function () {
+        var room_type_id = $(this).data('id');
+        $.get("{{ route('room_type.index') }}" + '/' + room_type_id + '/edit', function (data) {
             $('#modelHeading').html("{{ __('label.editCinema') }}");
-            $('#saveBtn').val("edit-seat_type");
+            $('#saveBtn').val("edit-room_type");
             $('#ajaxModel').modal('show');
-            $('#seat_type_id').val(data.id);
+            $('#room_type_id').val(data.id);
             $('#name').val(data.name);
             $('#address').val(data.address);
             $('#note').val(data.note);
@@ -92,12 +92,12 @@
         e.preventDefault();
         $(this).html('{{ __('label.sending') }}');
         $.ajax({
-            data: $('#seatTypeForm').serialize(),
-            url: "{{ route('seat_type.store') }}",
+            data: $('#roomTypeForm').serialize(),
+            url: "{{ route('room_type.store') }}",
             type: "POST",
             dataType: 'json',
             success: function (data) {
-                $('#seatTypeForm').trigger("reset");
+                $('#roomTypeForm').trigger("reset");
                 $('#ajaxModel').modal('hide');
                 table.draw();
                 document.getElementById("mess").innerHTML = data.success;
@@ -108,13 +108,13 @@
             }
         });
     });
-    $('body').on('click', '.deleteSeatType', function () {
-        var seat_type_id = $(this).data("id");
+    $('body').on('click', '.deleteRoomType', function () {
+        var room_type_id = $(this).data("id");
         if (confirm("{{ __('label.confirmDelete') }}"))
         {
             $.ajax({
                 type: "DELETE",
-                url: "{{ route('seat_type.store') }}" + '/' + seat_type_id,
+                url: "{{ route('room_type.store') }}" + '/' + room_type_id,
                 success: function (data) {
                     table.draw();
                     document.getElementById("mess").innerHTML = data.success;
