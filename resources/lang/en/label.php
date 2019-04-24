@@ -59,6 +59,7 @@ return [
     'action' => 'Action',
     'createNewCinema' => 'Create New Cinema',
     'createNewRoom' => 'Create New Room',
+    'createSeatType' => 'Create New Seat Type',
     'name' => 'Name',
     'address' => 'Address',
     'note' => 'Note',
@@ -78,5 +79,8 @@ return [
     //footer
     'by' => 'By :company',
     'web-name' => 'A.MOVIE',
-    'copy-rights' => 'A.Movie, 2019. All rights reserved. Done by TeamFlash'
+    'copy-rights' => 'A.Movie, 2019. All rights reserved. Done by TeamFlash',
+    //btn
+    'delete' => 'Delete',
+    'edit' => 'Edit'
 ];
