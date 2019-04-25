@@ -89,5 +89,35 @@ return [
     'copy-rights' => 'A.Movie, 2019. All rights reserved. Done by TeamFlash',
     //btn
     'delete' => 'Delete',
-    'edit' => 'Edit'
+    'edit' => 'Edit',
+    //register
+    'By-title' => 'By title',
+    'By-year' => 'By year',
+    'By-produce' => 'By product',
+    'Search-a-movie' => 'Search a movie',
+    'Register' => 'Register',
+    'welcome-to-aMovie' => 'Welcome to A.Movie',
+    'or' => 'or',
+    'Name' => 'Name',
+    'Email' => 'Email',
+    'Password' => 'Password',
+    'Confirm-Password' => 'Confirm Password', 
+    'Register' => 'Register',
+    //login
+    'Sign-in' => 'Sign in',
+    'Remember-Me' => 'Remember Me',
+    'Forgot-Your-Password' => 'Forgot Your Password?',
+    //sidebar
+    'Pages' => 'Pages',
+    'Login-Screens' => 'Login Screens',
+    'Forgot-Password' => 'Forgot Password',
+    'Charts' => 'Charts',
+    'Tables' => 'Tables',
+    'Other-Pages' => 'Other Pages',
+    'Watchlist' => 'Watchlist',
+    'Booked-tickets' => 'Booked tickets',
+    'Profile' => 'Profile',
+    'Admin' => 'Admin',
+    'Settings' => 'Settings',
+    'Activity' => 'Activity Log'
 ];

@@ -19,3 +19,5 @@ Route::resource('/admin/cinema', 'CinemaController');
 Route::resource('/admin/room', 'RoomController');
 Route::resource('/admin/seat_type', 'SeatTypeController');
 Route::resource('/admin/room_type', 'RoomTypeController');
+
+Auth::routes();

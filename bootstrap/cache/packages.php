@@ -1,48 +1,48 @@
-<?php return [
+<?php return array (
     'beyondcode/laravel-dump-server' => 
-    [
+    array (
         'providers' => 
-        [
-        0 => 'BeyondCode\\DumpServer\\DumpServerServiceProvider',
-        ],
-    ],
+        array (
+            0 => 'BeyondCode\\DumpServer\\DumpServerServiceProvider',
+        ),
+    ),
     'fideloper/proxy' => 
-    [
+    array (
         'providers' => 
-        [
-        0 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
-        ],
-    ],
+        array (
+            0 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
+        ),
+    ),
     'laravel/tinker' => 
-    [
+    array (
         'providers' => 
-        [
-        0 => 'Laravel\\Tinker\\TinkerServiceProvider',
-        ],
-    ],
+        array (
+            0 => 'Laravel\\Tinker\\TinkerServiceProvider',
+        ),
+    ),
     'nesbot/carbon' => 
-    [
+    array (
         'providers' => 
-        [
-        0 => 'Carbon\\Laravel\\ServiceProvider',
-        ],
-    ],
+        array (
+            0 => 'Carbon\\Laravel\\ServiceProvider',
+        ),
+    ),
     'nunomaduro/collision' => 
-    [
+    array (
         'providers' => 
-        [
-        0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-        ],
-    ],
+        array (
+            0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+        ),
+    ),
     'yajra/laravel-datatables-oracle' => 
-    [
+    array (
         'providers' => 
-        [
-        0 => 'Yajra\\DataTables\\DataTablesServiceProvider',
-        ],
+        array (
+            0 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+        ),
         'aliases' => 
-        [
-        'DataTables' => 'Yajra\\DataTables\\Facades\\DataTables',
-        ],
-    ],
-];
+        array (
+            'DataTables' => 'Yajra\\DataTables\\Facades\\DataTables',
+        ),
+    ),
+);
