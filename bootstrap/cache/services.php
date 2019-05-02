@@ -1,5 +1,4 @@
-<?php 
-return [
+<?php return [
     'providers' => 
     [
         0 => 'Illuminate\\Auth\\AuthServiceProvider',
@@ -18,7 +17,7 @@ return [
         13 => 'Illuminate\\Pagination\\PaginationServiceProvider',
         14 => 'Illuminate\\Pipeline\\PipelineServiceProvider',
         15 => 'Illuminate\\Queue\\QueueServiceProvider',
-        16 => 'Illuminate\\Redis\\RedisServiceProvider',
+        6 => 'Illuminate\\Redis\\RedisServiceProvider',
         17 => 'Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider',
         18 => 'Illuminate\\Session\\SessionServiceProvider',
         19 => 'Illuminate\\Translation\\TranslationServiceProvider',
@@ -168,7 +167,7 @@ return [
     'when' => 
     [
         'Illuminate\\Broadcasting\\BroadcastServiceProvider' => [],
-        'Illuminate\\Bus\\BusServiceProvider' =>  [],
+        'Illuminate\\Bus\\BusServiceProvider' => [],
         'Illuminate\\Cache\\CacheServiceProvider' => [],
         'Illuminate\\Foundation\\Providers\\ConsoleSupportServiceProvider' => [],
         'Illuminate\\Hashing\\HashServiceProvider' => [],
@@ -181,5 +180,5 @@ return [
         'Illuminate\\Validation\\ValidationServiceProvider' => [],
         'Laravel\\Tinker\\TinkerServiceProvider' => [],
         'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider' => [],
-    ]
+    ],
 ];

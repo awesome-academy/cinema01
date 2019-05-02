@@ -6,7 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Models\Cinema;
 
+use App\Http\Requests\CinemaRequest;
+
 use Yajra\Datatables\Datatables;
+
+use Illuminate\Support\Facades\Validator;
 
 class CinemaController extends Controller
 {
@@ -21,15 +25,15 @@ class CinemaController extends Controller
             $data = Cinema::latest()->get();
 
             return Datatables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('action', function($row){
-                            $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" class="edit btn btn-primary btn-sm editCinema">' . __('label.edit') . '</a>';
-                            $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteCinema">' . __('label.delete') . '</a>';
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" class="edit btn btn-primary btn-sm editCinema">' . __('label.edit') . '</a>';
+                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteCinema">' . __('label.delete') . '</a>';
 
-                            return $btn;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
         }
 
         return view('admin.cinema.cinema');
@@ -51,7 +55,7 @@ class CinemaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CinemaRequest $request)
     {
         Cinema::updateOrCreate(
         [

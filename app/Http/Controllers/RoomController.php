@@ -12,6 +12,10 @@ use App\Models\Cinema;
 
 use Yajra\Datatables\Datatables;
 
+use Illuminate\Support\Facades\Validator;
+
+use App\Http\Requests\RoomRequest;
+
 class RoomController extends Controller
 {
     /**
@@ -25,15 +29,15 @@ class RoomController extends Controller
             $data = Room::with('cinema')->with('roomType')->latest()->get();
 
             return Datatables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('action', function($row){
-                            $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" class="edit btn btn-primary btn-sm editRoom">' . __('label.edit') . '</a>';
-                            $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteRoom">' . __('label.delete') . '</a>';
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" class="edit btn btn-primary btn-sm editRoom">' . __('label.edit') . '</a>';
+                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteRoom">' . __('label.delete') . '</a>';
 
-                            return $btn;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
         }
         $cinemas = Cinema::all();
         $room_type = Room_type::all();
@@ -57,7 +61,7 @@ class RoomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoomRequest $request)
     {
         Room::updateOrCreate(
         [
@@ -70,7 +74,7 @@ class RoomController extends Controller
             'note' => $request->note,
         ]);
     
-        return response()->json(['success' => __('label.cinemaSave')]);
+        return response()->json(['success' => __('label.roomSave')]);
     }
 
     /**
@@ -119,6 +123,6 @@ class RoomController extends Controller
     {
         Room::findOrFail($id)->delete();
         
-        return response()->json(['success' => __('label.cinemaDel')]);
+        return response()->json(['success' => __('label.roomDel')]);
     }
 }

@@ -8,6 +8,10 @@ use App\Models\Seat_type;
 
 use Yajra\Datatables\Datatables;
 
+use Illuminate\Support\Facades\Validator;
+
+use App\Http\Requests\SeatTypeRequest;
+
 class SeatTypeController extends Controller
 {
     /**
@@ -21,15 +25,15 @@ class SeatTypeController extends Controller
             $data = Seat_type::latest()->get();
 
             return Datatables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('action', function($row){
-                            $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editSeatType">' . __('label.edit') . '</a>';
-                            $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteSeatType">' . __('label.delete') . '</a>';
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editSeatType">' . __('label.edit') . '</a>';
+                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteSeatType">' . __('label.delete') . '</a>';
 
-                            return $btn;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
         }
 
         return view('admin.cinema.seat_type');
@@ -51,7 +55,7 @@ class SeatTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SeatTypeRequest $request)
     {
         Seat_type::updateOrCreate(
         [

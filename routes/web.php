@@ -14,8 +14,12 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::resource('movie', 'MovieController');
 Route::get('now-showing', 'MovieController@nowShowing')->name('now-showing');
 Route::get('comming-soon', 'MovieController@commingSoon')->name('comming-soon');
-Route::get('/admin', 'AdminHomeController@index')->name('admin-home');
-Route::resource('/admin/cinema', 'CinemaController');
-Route::resource('/admin/room', 'RoomController');
-Route::resource('/admin/seat_type', 'SeatTypeController');
-Route::resource('/admin/room_type', 'RoomTypeController');
+Auth::routes();
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
+    Route::get('/', 'AdminHomeController@index')->name('admin-home');
+    Route::resource('cinema', 'CinemaController');
+    Route::resource('room', 'RoomController');
+    Route::resource('seat_type', 'SeatTypeController');
+    Route::resource('room_type', 'RoomTypeController');
+    Route::resource('seat_price', 'SeatPriceController');
+});
