@@ -8,6 +8,10 @@ use App\Models\Room_type;
 
 use Yajra\Datatables\Datatables;
 
+use App\Http\Requests\RoomTypeRequest;
+
+use Illuminate\Support\Facades\Validator;
+
 class RoomTypeController extends Controller
 {
     /**
@@ -21,15 +25,15 @@ class RoomTypeController extends Controller
             $data = Room_type::latest()->get();
 
             return Datatables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('action', function($row){
-                            $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editRoomType">' . __('label.edit') . '</a>';
-                            $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteRoomType">' . __('label.delete') . '</a>';
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editRoomType">' . __('label.edit') . '</a>';
+                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteRoomType">' . __('label.delete') . '</a>';
 
-                            return $btn;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
         }
 
         return view('admin.cinema.room_type');
@@ -51,7 +55,7 @@ class RoomTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoomTypeRequest $request)
     {
         Room_type::updateOrCreate(
         [
@@ -60,7 +64,7 @@ class RoomTypeController extends Controller
         [
             'name' => $request->name,
             'note' => $request->note,
-        ]);  
+        ]);
 
         return response()->json(['success' => __('label.roomTypeSave')]);
     }

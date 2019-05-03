@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Seat_price extends Model
 {
     protected $fillable = [
+        'room_type_id',
+        'seat_type_id',
         'price',
     ];
     

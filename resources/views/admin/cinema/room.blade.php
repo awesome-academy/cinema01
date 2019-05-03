@@ -25,13 +25,16 @@
             <div class="modal-header">
                 <h4 class="modal-title" id="modelHeading"></h4>
             </div>
+            <div id="error" class="alert alert-danger print-error-msg">
+                <ul></ul>
+            </div>
             <div class="modal-body">
                 <form id="roomForm" name="roomForm" class="form-horizontal">
                     <input type="hidden" name="room_id" id="room_id">
                     <div class="form-group">
                         <div class="col-sm-12">
                             <select id="cinema_id" name="cinema_id">
-                                <option value=''>{{ __('label.choseCinemaName') }}</option>
+                                <option value=''>{{ __('label.chooseCinema') }}</option>
                                 @foreach ($cinemas as $data)
                                     <option value="{{ $data->id }}">{{ $data->name }}</option>
                                 @endforeach
@@ -41,7 +44,7 @@
                     <div class="form-group">
                         <div class="col-sm-12">
                             <select id="room_type_id" name="room_type_id">
-                                <option value=''>{{ __('label.choseRoomType') }}</option>
+                                <option value=''>{{ __('label.chooseRoomType') }}</option>
                                 @foreach ($room_type as $data)
                                     <option value="{{ $data->id }}">{{ $data->name }}</option>
                                 @endforeach
@@ -51,13 +54,13 @@
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">{{ __('label.name') }}</label>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="{{ __('label.enterName') }}" value="" maxlength="50" required="">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="{{ __('label.enterName') }}" value="">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">{{ __('label.note') }}</label>
                         <div class="col-sm-12">
-                            <textarea id="note" name="note" required="" placeholder="{{ __('label.enterNote') }}" class="form-control"></textarea>
+                            <textarea id="note" name="note" placeholder="{{ __('label.enterNote') }}" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="col-sm-offset-2 col-sm-10">
@@ -102,7 +105,7 @@
     });
     $('body').on('click', '.editRoom', function () {
         var room_id = $(this).data('id');
-        $.get("{{ route('room.index') }}" +'/' + room_id + '/edit', function (data) {
+        $.get("{{ route('room.index') }}" + '/' + room_id + '/edit', function (data) {
             $('#modelHeading').html("{{ __('label.editRoom') }}");
             $('#saveBtn').val("edit-room");
             $('#ajaxModel').modal('show');
@@ -122,13 +125,17 @@
             type: "POST",
             dataType: 'json',
             success: function (data) {
-                $('#roomForm').trigger("reset");
+                $('#roomTypeForm').trigger("reset");
                 $('#ajaxModel').modal('hide');
                 table.draw();
-                document.getElementById("mess").innerHTML = data.success;
+                document.getElementById('mess').innerHTML = data.success;
             },
-            error: function (data) {
-                console.log('Error:', data);
+           error: function(data) {
+                var x = JSON.parse(data.responseText);
+                printErrorMsg(x.errors);
+                setTimeout(function(){
+                        $('#error').hide();
+                    }, 3000);
                 $('#saveBtn').html('{{ __('label.saveChange') }}');
             }
         });
@@ -142,7 +149,7 @@
                 url: "{{ route('room.store') }}" + '/' + room_id,
                 success: function (data) {
                     table.draw();
-                    document.getElementById("mess").innerHTML = data.success;
+                    document.getElementById('mess').innerHTML = data.success;
                 },
                 error: function (data) {
                     console.log('Error:', data);
@@ -152,5 +159,12 @@
         
     });    
 });
+function printErrorMsg (msg) {
+    $(".print-error-msg").find("ul").html('');
+    $(".print-error-msg").css('display', 'block');
+    $.each( msg, function( key, value ) {
+        $(".print-error-msg").find("ul").append('<li>' + value + '</li>');
+    });
+}
 </script>
 @endpush

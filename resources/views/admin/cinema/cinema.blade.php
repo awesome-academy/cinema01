@@ -24,25 +24,28 @@
             <div class="modal-header">
                 <h4 class="modal-title" id="modelHeading"></h4>
             </div>
+            <div id="error" class="alert alert-danger print-error-msg">
+                <ul></ul>
+            </div>
             <div class="modal-body">
                 <form id="cinemaForm" name="cinemaForm" class="form-horizontal">
                    <input type="hidden" name="cinema_id" id="cinema_id">
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">{{ __('label.name') }}</label>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="{{ __('label.enterName') }}" value="" maxlength="50" required="">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="{{ __('label.enterName') }}" value="">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">{{ __('label.address') }}</label>
                         <div class="col-sm-12">
-                            <textarea id="address" name="address" required="" placeholder="{{ __('label.enterAddress') }}" class="form-control"></textarea>
+                            <textarea id="address" name="address" placeholder="{{ __('label.enterAddress') }}" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">{{ __('label.note') }}</label>
                         <div class="col-sm-12">
-                            <textarea id="note" name="note" required="" placeholder="{{ __('label.enterNote') }}" class="form-control"></textarea>
+                            <textarea id="note" name="note" placeholder="{{ __('label.enterNote') }}" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="col-sm-offset-2 col-sm-10">
@@ -86,7 +89,7 @@
     });
     $('body').on('click', '.editCinema', function () {
         var cinema_id = $(this).data('id');
-        $.get("{{ route('cinema.index') }}" +'/' + cinema_id + '/edit', function (data) {
+        $.get("{{ route('cinema.index') }}" + '/' + cinema_id + '/edit', function (data) {
             $('#modelHeading').html("{{ __('label.editCinema') }}");
             $('#saveBtn').val("edit-user");
             $('#ajaxModel').modal('show');
@@ -105,13 +108,17 @@
             type: "POST",
             dataType: 'json',
             success: function (data) {
-                $('#cinemaForm').trigger("reset");
+                $('#roomTypeForm').trigger("reset");
                 $('#ajaxModel').modal('hide');
                 table.draw();
-                document.getElementById("mess").innerHTML = data.success;
+                document.getElementById('mess').innerHTML = data.success;
             },
-            error: function (data) {
-                console.log('Error:', data);
+            error: function(data) {
+                var x = JSON.parse(data.responseText);
+                printErrorMsg(x.errors);
+                setTimeout(function(){
+                        $('#error').hide();
+                    }, 3000);
                 $('#saveBtn').html('{{ __('label.saveChange') }}');
             }
         });
@@ -125,7 +132,7 @@
                 url: "{{ route('cinema.store') }}" + '/' + cinema_id,
                 success: function (data) {
                     table.draw();
-                    document.getElementById("mess").innerHTML = data.success;
+                    document.getElementById('mess').innerHTML = data.success;
                 },
                 error: function (data) {
                     console.log('Error:', data);
@@ -134,5 +141,12 @@
         }
     });    
 });
+function printErrorMsg (msg) {
+    $(".print-error-msg").find("ul").html('');
+    $(".print-error-msg").css('display', 'block');
+    $.each( msg, function( key, value ) {
+        $(".print-error-msg").find("ul").append('<li>' + value + '</li>');
+    });
+}
 </script>
 @endpush
