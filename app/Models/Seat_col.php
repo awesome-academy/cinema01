@@ -8,6 +8,8 @@ class Seat_col extends Model
 {
     protected $fillable = [
         'status',
+        'seat_row_id',
+        'seat_name',
     ];
     
     public function seatRow()

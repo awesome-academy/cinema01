@@ -16,8 +16,8 @@ class Seat_type extends Model
         return $this->hasOne('App\Models\Seat_type');
     }
 
-    public function seatRow()
+    public function seatRows()
     {
-        return $this->belongsTo('App\Models\Seat_row');
+        return $this->hasMany('App\Models\Seat_row');
     }
 }
