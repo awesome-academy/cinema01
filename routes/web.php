@@ -22,4 +22,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
     Route::resource('seat_type', 'SeatTypeController');
     Route::resource('room_type', 'RoomTypeController');
     Route::resource('seat_price', 'SeatPriceController');
+    Route::resource('seat', 'SeatController');
+    Route::resource('seat_col', 'SeatColController');
 });

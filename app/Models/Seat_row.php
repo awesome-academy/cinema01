@@ -8,6 +8,8 @@ class Seat_row extends Model
 {
     protected $fillable = [
         'row_name',
+        'seat_type_id',
+        'room_id',
     ];
     
     public function room()
@@ -20,8 +22,8 @@ class Seat_row extends Model
         return $this->hasMany('App\Models\Seat_col');
     }
 
-    public function seatTypes()
+    public function seatType()
     {
-        return $this->hasMany('App\Models\Seat_type');
+        return $this->belongsTo('App\Models\Seat_type');
     }
 }
