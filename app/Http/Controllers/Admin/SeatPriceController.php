@@ -1,18 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use App\Models\Seat_price;
+
 use App\Models\Room_type;
+
+use App\Models\Seat_type;
 
 use Yajra\Datatables\Datatables;
 
-use App\Http\Requests\RoomTypeRequest;
-
 use Illuminate\Support\Facades\Validator;
 
-class RoomTypeController extends Controller
+use App\Http\Requests\SeatPriceRequest;
+
+class SeatPriceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,21 +28,23 @@ class RoomTypeController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Room_type::latest()->get();
+            $data = Seat_price::with('seatType')->with('roomType')->latest()->get();
 
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
-                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editRoomType">' . __('label.edit') . '</a>';
-                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteRoomType">' . __('label.delete') . '</a>';
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" class="edit btn btn-primary btn-sm editSeatPrice">' . __('label.edit') . '</a>';
+                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" class="btn btn-danger btn-sm deleteSeatPrice">' . __('label.delete') . '</a>';
 
                     return $btn;
                 })
                 ->rawColumns(['action'])
                 ->make(true);
         }
+        $room_type = Room_type::all();
+        $seat_type = Seat_type::all();
 
-        return view('admin.cinema.room_type');
+        return view('admin.cinema.seat_price', compact('seat_type', 'room_type'));
     }
 
     /**
@@ -55,18 +63,19 @@ class RoomTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RoomTypeRequest $request)
+    public function store(SeatPriceRequest $request)
     {
-        Room_type::updateOrCreate(
+        Seat_price::updateOrCreate(
         [
-            'id' => $request->room_type_id,
+            'id' => $request->seat_price_id,
         ],
         [
-            'name' => $request->name,
-            'note' => $request->note,
+            'room_type_id' => $request->room_type_id,
+            'seat_type_id' => $request->seat_type_id,
+            'price' => $request->price,
         ]);
-
-        return response()->json(['success' => __('label.roomTypeSave')]);
+    
+        return response()->json(['success' => __('label.seatPriceSave')]);
     }
 
     /**
@@ -88,9 +97,9 @@ class RoomTypeController extends Controller
      */
     public function edit($id)
     {
-        $cinema = Room_type::findOrFail($id);
+        $data = Seat_price::findOrFail($id);
 
-        return response()->json($cinema);
+        return response()->json($data);
     }
 
     /**
@@ -113,8 +122,8 @@ class RoomTypeController extends Controller
      */
     public function destroy($id)
     {
-        Room_type::findOrFail($id)->delete();
-
-        return response()->json(['success' => __('label.roomTypeDel')]);
+        Seat_price::findOrFail($id)->delete();
+        
+        return response()->json(['success' => __('label.seatTypeDel')]);
     }
 }

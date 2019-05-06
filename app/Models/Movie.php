@@ -10,16 +10,8 @@ use DB;
 
 class Movie extends Model
 {
-    protected $fillable = [
-        'name',
-        'type',
-        'producer',
-        'country',
-        'cast',
-        'day_start',
-        'time',
-        'content',
-        'directors',
+    protected $guarded = [
+        'id',
     ];
 
     public function votes()
