@@ -1,48 +1,48 @@
-<?php return [
-    'beyondcode/laravel-dump-server' => 
-    [
-        'providers' => 
-        [
-            0 => 'BeyondCode\\DumpServer\\DumpServerServiceProvider',
-        ],
-    ],
-    'fideloper/proxy' => 
-    [
-        'providers' => 
-        [
-            0 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
-        ],
-    ],
-    'laravel/tinker' => 
-    [
-        'providers' => 
-        [
-            0 => 'Laravel\\Tinker\\TinkerServiceProvider',
-        ],
-    ],
-    'nesbot/carbon' => 
-    [
-        'providers' => 
-        [
-            0 => 'Carbon\\Laravel\\ServiceProvider',
-        ],
-    ],
-    'nunomaduro/collision' => 
-    [
-        'providers' => 
-        [
-            0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-        ],
-    ],
-        'yajra/laravel-datatables-oracle' => 
-    [
-        'providers' => 
-        [
-            0 => 'Yajra\\DataTables\\DataTablesServiceProvider',
-        ],
-        'aliases' => 
-        [
-            'DataTables' => 'Yajra\\DataTables\\Facades\\DataTables',
-        ],
-    ],
-];
+<?php return array (
+  'beyondcode/laravel-dump-server' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'BeyondCode\\DumpServer\\DumpServerServiceProvider',
+    ),
+  ),
+  'fideloper/proxy' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
+    ),
+  ),
+  'laravel/tinker' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    ),
+  ),
+  'nesbot/carbon' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Carbon\\Laravel\\ServiceProvider',
+    ),
+  ),
+  'nunomaduro/collision' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    ),
+  ),
+  'yajra/laravel-datatables-oracle' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'DataTables' => 'Yajra\\DataTables\\Facades\\DataTables',
+    ),
+  ),
+);

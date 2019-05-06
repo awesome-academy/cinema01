@@ -25,4 +25,5 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     Route::resource('seat', 'SeatController');
     Route::resource('seat_col', 'SeatColController');
     Route::resource('movie', 'MovieController');
+    Route::resource('showtime', 'ShowtimeController');
 });
