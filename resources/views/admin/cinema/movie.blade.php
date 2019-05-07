@@ -20,7 +20,7 @@
     </table>
 </div>
 <div class="modal fade" id="ajaxModel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="modelHeading"></h4>
@@ -29,7 +29,7 @@
                 <ul></ul>
             </div>
             <div class="modal-body">
-                <form id="movieForm" name="movieForm" class="form-horizontal">
+                <form id="movieForm" name="movieForm" enctype="multipart/form-data" class="form-horizontal">
                    <input type="hidden" name="movie_id" id="movie_id">
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">{{ __('label.name') }}</label>
@@ -37,44 +37,49 @@
                             <input type="text" class="form-control" id="name" name="name" placeholder="{{ __('label.enterName') }}" value="">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <select id="status" name="status">
-                                <option value="">{{ __('label.chooseStatus') }}</option>
-                                <option value="1">{{ __('label.showing') }}</option>
-                                <option value="2">{{ __('label.soon') }}</option>
-                                <option value="3">{{ __('label.closed') }}</option>
-                            </select>
+                    <div class="row col-sm-12">
+                        <div class="form-group col-sm">
+                            <label class="col-sm-2 control-label">{{ __('label.status') }}</label>
+                            <div class="col-sm-12">
+                                <select id="status" name="status">
+                                    <option value="">{{ __('label.chooseStatus') }}</option>
+                                    <option value="1">{{ __('label.showing') }}</option>
+                                    <option value="2">{{ __('label.soon') }}</option>
+                                    <option value="3">{{ __('label.closed') }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm">
+                            <label class="col-sm-2 control-label">{{ __('label.duration') }}</label>
+                            <div class="col-sm-12">
+                                <input type="number" id="duration" name="duration" placeholder="{{ __('label.enterDuration') }}" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm">
+                            <label for="country" class="col-sm-2 control-label">{{ __('label.country') }}</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="country" name="country" placeholder="{{ __('label.enterName') }}" value="">
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ __('label.duration') }}</label>
-                        <div class="col-sm-12">
-                            <input type="number" id="duration" name="duration" placeholder="{{ __('label.enterDuration') }}" class="form-control">
+                    <div class="row col-sm-12">
+                        <div class="form-group col-sm">
+                            <label for="director" class="col-sm-2 control-label">{{ __('label.director') }}</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="director" name="director" placeholder="{{ __('label.enterName') }}" value="">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="country" class="col-sm-2 control-label">{{ __('label.country') }}</label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="country" name="country" placeholder="{{ __('label.enterName') }}" value="">
+                        <div class="form-group col-sm">
+                            <label for="type" class="col-sm-2 control-label">{{ __('label.type') }}</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="type" name="type" placeholder="{{ __('label.enterName') }}" value="">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="director" class="col-sm-2 control-label">{{ __('label.director') }}</label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="director" name="director" placeholder="{{ __('label.enterName') }}" value="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="type" class="col-sm-2 control-label">{{ __('label.type') }}</label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="type" name="type" placeholder="{{ __('label.enterName') }}" value="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="producer" class="col-sm-2 control-label">{{ __('label.producer') }}</label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="producer" name="producer" placeholder="{{ __('label.enterName') }}" value="">
+                        <div class="form-group col-sm">
+                            <label for="producer" class="col-sm-2 control-label">{{ __('label.product') }}</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="producer" name="producer" placeholder="{{ __('label.enterName') }}" value="">
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -83,10 +88,24 @@
                             <input type="text" class="form-control" id="actor" name="actor" placeholder="{{ __('label.enterName') }}" value="">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="day_start" class="col-sm-2 control-label">{{ __('label.day_start') }}</label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="day_start" name="day_start" placeholder="{{ __('label.enterName') }}" value="">
+                    <div class="row col-sm-12">
+                        <div class="form-group col-sm">
+                            <label for="day_start" class="control-label">{{ __('label.dayStart') }}</label>
+                            <div class="col-sm-12">
+                                <input type="date" class="form-control" id="day_start" name="day_start" placeholder="{{ __('label.enterName') }}" value="">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm">
+                            <label for="image" class="control-label">{{ __('label.coverImage') }}</label>
+                            <div class="col-sm-12">
+                                <input type="file" class="form-control" id="image" name="image">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm">
+                            <label for="trailer" class="control-label">{{ __('label.trailer') }}</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="trailer" name="trailer">
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -165,8 +184,10 @@
         $.get("{{ route('movie.index') }}" + '/' + movie_id + '/edit', function (data) {
             $('#modelHeading').html("{{ __('label.editCinema') }}");
             $('#saveBtn').val("edit-user");
+            $('#movieForm').trigger("reset");
             $('#ajaxModel').modal('show');
             $('#movie_id').val(data.id);
+            $('#status').val(data.status);
             $('#name').val(data.name);
             $('#duration').val(data.time);
             $('#country').val(data.country);
@@ -176,16 +197,21 @@
             $('#actor').val(data.cast);
             $('#day_start').val(data.day_start);
             $('#content').val(data.content);
+            $('#trailer').val(data.trailer);
         })
     });
     $('#saveBtn').click(function (e) {
+        var mydata = new FormData($('#movieForm')[0]);
         e.preventDefault();
         $(this).html('{{ __('label.sending') }}');
         $.ajax({
-            data: $('#movieForm').serialize(),
+            data: mydata,
             url: "{{ route('movie.store') }}",
-            type: "POST",
+            cache: false,
+            type: 'POST',
             dataType: 'json',
+            processData: false,
+            contentType: false,
             success: function (data) {
                 $('#roomTypeForm').trigger("reset");
                 $('#ajaxModel').modal('hide');

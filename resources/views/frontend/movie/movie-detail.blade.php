@@ -9,7 +9,7 @@
                 <div class="col-sm-4 col-md-3 movie-mobile">
                     <div class="movie__images">
                         <span class="movie__rating">{{ __('label.movie_text', ['data' => round($vote, 1)]) }}</span>
-                        <img alt='' src="{{ asset(config('app.image_url') .'526x773.png') }}">
+                        <img class="resize-cover" alt='' src="{{ asset(config('app.upload_cover') . $movie->image) }}">
                         <div class="swiper-container play_btn">
                           <div class="swiper-wrapper" >
                                 <div class="media-video swiper-slide-visible swiper-slide-active">

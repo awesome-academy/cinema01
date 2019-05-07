@@ -61,11 +61,7 @@ class MovieController extends Controller
      */
     public function store(MovieRequest $request)
     {
-        Movie::updateOrCreate(
-        [
-            'id' => $request->movie_id,
-        ],
-        [
+        $query = [
             'name' => $request->name,
             'time' => $request->duration,
             'country' => $request->country,
@@ -76,9 +72,18 @@ class MovieController extends Controller
             'day_start' => $request->day_start,
             'content' => $request->content,
             'status' => $request->status,
-            'image' => '',
-            'trailer' => '',
-        ]);
+            'trailer' => $request->trailer,
+        ];
+        if ($request->hasFile('image'))
+        {
+            $file_name = $request->image->getClientOriginalName();
+            $request->image->move('upload/cover_movie/',$file_name);
+            $query = array_merge($query, ['image' => $file_name]);
+        }
+        Movie::updateOrCreate(
+        [
+            'id' => $request->movie_id,
+        ], $query);
 
         return response()->json(['success' => __('label.movieSave')]);
     }
