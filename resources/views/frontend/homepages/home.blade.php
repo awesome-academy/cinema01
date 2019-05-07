@@ -107,7 +107,7 @@
                             <p>{{ __('label.movie_type', ['data' => $data->movie->type]) }}</p>
                         </li>
                         <li class="last-block">
-                            <a href="{{ route('movie.show', ['id' => $data->movie->id]) }}" class="slide__link">{{ __('label.more') }}</a>
+                            <a href="{{ route('movie-detail.show', ['id' => $data->movie->id]) }}" class="slide__link">{{ __('label.more') }}</a>
                         </li>
                     </ul>
                 </div>
@@ -152,12 +152,12 @@
                 @foreach ($new as $data)
                     <div class="movie movie--test movie--test--dark movie--test--left">
                         <div class="movie__images">
-                            <a href="{{ route('movie.show', ['id' => $data->id]) }}" class="movie-beta__link">
+                            <a href="{{ route('movie-detail.show', ['id' => $data->id]) }}" class="movie-beta__link">
                                 <img alt='' src="{{ asset(config('app.image_url') . '424x424.png') }}">
                             </a>
                         </div>
                         <div class="movie__info">
-                            <a href='{{ route('movie.show', ['id' => $data->id]) }}' class="movie__title">{{ __('label.movie_title', ['data' => $data->name]) }}</a>
+                            <a href='{{ route('movie-detail.show', ['id' => $data->id]) }}' class="movie__title">{{ __('label.movie_title', ['data' => $data->name]) }}</a>
                             <p class="movie__time">{{ __('label.movie_time', ['data' => $data->time]) }}</p>
                             <p class="movie__option">{{ __('label.movie_type', ['data' => $data->type]) }}</p>
                             <div class="movie__rate">

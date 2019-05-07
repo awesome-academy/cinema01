@@ -40,17 +40,20 @@
             <div class="choose-container">
                 <div class="clearfix"></div>
                 <div class="time-select">
-                    @if($cinema == [])
-                        {{ __('label.not_showtime') }}
-                    @else
-                        @foreach ($cinema as $data)
-                            <div class="time-select__group">
-                                <div class="col-sm-4">
-                                    <p class="time-select__place">{{ $data->name }}</p>
-                                </div>   
+                    @foreach ($cinema as $cinema)
+                        <div class="time-select__group">
+                            <div class="col-sm-4">
+                                <p class="time-select__place">{{ $cinema->name }}</p>
                             </div>
-                        @endforeach
-                    @endif
+                            <ul class="col-sm-8 items-wrap">
+                                @foreach ($cinema->rooms as $room)
+                                    @foreach ($room->showtimes as $showtime)
+                                        <li class="time-select__item" data-time='{{ $timestart = \Carbon\Carbon::parse($showtime->timestart)->format('H:i') }}'>{{ $timestart }}</li>
+                                    @endforeach
+                                @endforeach
+                            </ul> 
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

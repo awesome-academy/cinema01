@@ -34,7 +34,7 @@
                             <a href="{{ route('now-showing') }}"><h4 href='' class="mega-menu__heading">{{ __('label.now') }}</h4></a>
                             @foreach ($new as $data)
                                 <div class="gallery-item col-md-6">
-                                    <a href='{{ route('movie.show', ['id' => $data->id]) }}' class="gallery-item__image">
+                                    <a href='{{ route('movie-detail.show', ['id' => $data->id]) }}' class="gallery-item__image">
                                         <img alt='' src="{{ asset(config('app.image_url') . '424x300.png') }}">
                                     </a>
                                     <a>{{ $data->name }}</a>
@@ -45,7 +45,7 @@
                             <a href="{{ route('comming-soon') }}"><h4 class="mega-menu__heading">{{ __('label.soon') }}</h4></a>
                             @foreach ($soon as $data)
                                 <div class="gallery-item col-md-6">
-                                    <a href='{{ route('movie.show', ['id' => $data->id]) }}' class="gallery-item__image">
+                                    <a href='{{ route('movie-detail.show', ['id' => $data->id]) }}' class="gallery-item__image">
                                         <img alt='' src="{{ asset(config('app.image_url') . '424x300.png') }}">
                                     </a>
                                     <a>{{ $data->name }}</a>

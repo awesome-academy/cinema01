@@ -15,7 +15,7 @@
                 @foreach ($movie as $data)
                 	<div class="col-xs-6 col-sm-3 cinema-item">
                 		<div class="cinema">
-	                        <a href='{{ route('movie.show', ['id' => $data->id]) }}' class="cinema__images">
+	                        <a href='{{ route('movie-detail.show', ['id' => $data->id]) }}' class="cinema__images">
 	                            <img alt='' src="{{ asset(config('app.image_url') . '406x600.jpg') }}">
 	                            <span class="cinema-rating">{{ __('label.rate', ['data' => round($data->votes->avg('point'), 1)]) }}</span>
 	                        </a>
