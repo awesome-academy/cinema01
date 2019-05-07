@@ -11,7 +11,7 @@
 */
 // Home page
 Route::get('/', 'HomeController@index')->name('home');
-Route::resource('movie', 'MovieController');
+Route::resource('movie-detail', 'MovieController');
 Route::get('now-showing', 'MovieController@nowShowing')->name('now-showing');
 Route::get('comming-soon', 'MovieController@commingSoon')->name('comming-soon');
 Auth::routes();

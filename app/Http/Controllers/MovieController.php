@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Movie;
+use App\Models\Showtime;
+use App\Models\Room;
+use App\Models\Cinema;
 
 use DB;
 
@@ -51,7 +54,12 @@ class MovieController extends Controller
     {
         $movie = Movie::findOrFail($id);
         $vote = Movie::findOrFail($id)->votes->avg('point');
-        $cinema = Movie::getListCinema($id);
+        $movieFilter = function ($query) use ($id) {
+            $query->where('movie_id', $id);
+        };
+        $cinema = Cinema::with(['rooms.showtimes' => $movieFilter])
+            ->whereHas('rooms.showtimes', $movieFilter)
+            ->get();
         
         return view('frontend.movie.movie-detail', compact('movie', 'vote', 'cinema'));
     }
