@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Showtime extends Model
 {
-    protected $fillable = [
-        'timestar',
+    protected $guarded = [
+        'id',
     ];
 
     public function movie()
