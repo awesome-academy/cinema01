@@ -47,7 +47,6 @@
     <!-- Migrate --> 
     <script src="{{ asset('bower_components/xp_css/js/external/jquery-migrate-1.2.1.min.js') }}"></script>
     <!-- Bootstrap 3--> 
-    <script src="{{ asset('bower_components/jquery.min/index.js') }}"></script>
     <!-- Mobile menu -->
     <script src="{{ asset('bower_components/xp_css/js/jquery.mobile.menu.js') }}"></script>
      <!-- Select -->
@@ -78,5 +77,7 @@
     <script src="{{ asset('bower_components/xp_css/js/external/idangerous.swiper.min.js') }}"></script>
     <!-- Magnific-popup -->
     <script src="{{ asset('bower_components/xp_css/js/external/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('bower_components/jquery.min/index.js') }}"></script>
+    @stack('scripts')
 </body>
 </html>
