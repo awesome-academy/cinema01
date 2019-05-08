@@ -23,7 +23,7 @@ class MovieRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'name' => 'required',
             'country' => 'required',
             'director' => 'required',
@@ -36,5 +36,11 @@ class MovieRequest extends FormRequest
             'duration' => 'required|integer',
             'status' => 'required|integer',
         ];
+        if (request()->hasFile('image') || !request('movie_id'))
+        {
+            $rules = array_merge($rules, ['image' => 'required|image|max:2028']);
+        }
+
+        return $rules;
     }
 }

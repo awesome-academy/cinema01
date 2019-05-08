@@ -3,6 +3,7 @@
 return [
 
     'image_url' => 'bower_components/xp_css/images/',
+    'upload_cover' => 'upload/cover_movie/',
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -68,7 +69,7 @@ return [
     |
     */
 
-    'timezone' => 'HoChiMinh',
+    'timezone' => 'Asia/Ho_Chi_Minh',
 
     /*
     |--------------------------------------------------------------------------
