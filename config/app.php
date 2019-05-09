@@ -3,6 +3,7 @@
 return [
 
     'image_url' => 'bower_components/xp_css/images/',
+    'image_pay' => 'bower_components/xp_css/images/payment/',
     'upload_cover' => 'upload/cover_movie/',
     /*
     |--------------------------------------------------------------------------

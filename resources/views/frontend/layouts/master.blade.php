@@ -14,6 +14,7 @@
     <!-- Open Sans -->
     <link href='{{ asset('bower_components/css/index') }}' rel='stylesheet' type='text/css'>
     <!-- Stylesheets -->
+    <link href='{{ asset('bower_components/bootstrap.min/index.css') }}' rel='stylesheet' type='text/css'>
     <!-- jQuery UI --> 
     <link href="{{ asset('bower_components/jquery-ui1/index.css') }}" rel="stylesheet">
     <!-- Mobile menu -->
@@ -46,7 +47,6 @@
     <script>window.jQuery || document.write('<script src="{{ asset('bower_components/xp_css/js/external/jquery-1.10.1.min.js') }}"><\/script>')</script>
     <!-- Migrate --> 
     <script src="{{ asset('bower_components/xp_css/js/external/jquery-migrate-1.2.1.min.js') }}"></script>
-    <!-- Bootstrap 3--> 
     <!-- Mobile menu -->
     <script src="{{ asset('bower_components/xp_css/js/jquery.mobile.menu.js') }}"></script>
      <!-- Select -->
@@ -78,6 +78,8 @@
     <!-- Magnific-popup -->
     <script src="{{ asset('bower_components/xp_css/js/external/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('bower_components/jquery.min/index.js') }}"></script>
+    <!-- Bootstrap 3-->
+    <script src="{{ asset('bower_components/bootstrap.min.js/index.js') }}"></script>
     @stack('scripts')
 </body>
 </html>

@@ -34,8 +34,8 @@ class MenuComposer
     }
     public function compose(View $view)
     {
-        $new = $this->movie()->where('status', 0)->get();
-        $soon = $this->movie()->where('status', 1)->get();
+        $new = $this->movie()->where('status', 1)->get();
+        $soon = $this->movie()->where('status', 2)->get();
         $view->with('new', $new);
         $view->with('soon', $soon);
     }
