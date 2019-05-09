@@ -72,7 +72,7 @@
 <form id='showtimeForm' class='booking-form' method="POST" action="{{ route('choose-seat.store') }}">
     @csrf
     <input type="hidden" name="showtime_id" id="showtime_id">
-    <div id="booking-next" class="booking-pagination hide">
+    <div id="booking-next" class="booking-pagination class-hide">
             <a href="#" class="booking-pagination__prev hide--arrow">
                 <span class="arrow__text arrow--prev"></span>
                 <span class="arrow__info"></span>
@@ -91,7 +91,7 @@
         var chooseTime = $(this).attr('data-time');
         var id = $(this).attr('data-id');
         $('.choose-indector--time').find('.choosen-area').text(chooseTime);
-        $('.booking-pagination').show();
+        $('.class-hide').show();
         //gán showtime_id form
         $('#showtime_id').val(id);
     });

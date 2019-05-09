@@ -27,13 +27,13 @@
                                     @foreach ($seatRow->seatCols as $data)
                                         @if ($data->seatRow->seat_type_id == 1) 
                                         {
-                                            <span class="sits__place sits-price--cheap" data-place='{{ $data->seat_name }}' data-price='{{ $seatRow->seatType->seatPrices[0]->price }}'>{{ $data->seat_name }}</span>
+                                            <span class="sits__place sits-price--cheap" data-id='{{ $data->id }}' data-place='{{ $data->seat_name }}' data-price='{{ $seatRow->seatType->seatPrices[0]->price }}'>{{ $data->seat_name }}</span>
                                         } @elseif ($data->seatRow->seat_type_id == 2)
                                         {
-                                            <span class="sits__place sits-price--middle" data-place='{{ $data->seat_name }}' data-price='{{ $seatRow->seatType->seatPrices[0]->price }}'>{{ $data->seat_name }}</span>
+                                            <span class="sits__place sits-price--middle" data-id='{{ $data->id }}'  data-place='{{ $data->seat_name }}' data-price='{{ $seatRow->seatType->seatPrices[0]->price }}'>{{ $data->seat_name }}</span>
                                         } @elseif ($data->seatRow->seat_type_id == 3)
                                         {
-                                            <span class="sits__place sits-price--expensive" data-place='{{ $data->seat_name }}' data-price='{{ $seatRow->seatType->seatPrices[0]->price }}'>{{ $data->seat_name }}</span>
+                                            <span class="sits__place sits-price--expensive" data-id='{{ $data->id }}'  data-place='{{ $data->seat_name }}' data-price='{{ $seatRow->seatType->seatPrices[0]->price }}'>{{ $data->seat_name }}</span>
                                         }
                                         @endif
                                     @endforeach
@@ -58,20 +58,17 @@
     </section>
 </div>
 <div class="clearfix"></div>
-<form id='film-and-time' class="booking-form" method='get' action='book3-buy.html'>
-    <input type='text' name='choosen-number' class="choosen-number">
-    <input type='text' name='choosen-number--cheap' class="choosen-number--cheap">
-    <input type='text' name='choosen-number--middle' class="choosen-number--middle">
-    <input type='text' name='choosen-number--expansive' class="choosen-number--expansive">
-    <input type='text' name='choosen-cost' class="choosen-cost">
-    <input type='text' name='choosen-sits' class="choosen-sits">
-    <div class="booking-pagination booking-pagination--margin">
+<form id='showtimeForm' method="POST" action="{{ route('payment.store') }}">
+    @csrf
+    <input type="hidden" name="seatId[]" id="seatId">
+    <input type="hidden" name="result" id="result">
+    <div id="booking-next" class="booking-pagination">
         <a href="{{ URL::previous() }}" class="booking-pagination__prev">
             <span class="arrow__text arrow--prev">{{ __('prev step') }}</span>
             <span class="arrow__info">{{ __('what - where - when') }}</span>
         </a>
-        <div class="hide">
-            <button href="#" class="booking-pagination__next">
+        <div class="class-hide">
+            <button type="submit" class="booking-pagination__next">
                 <span class="arrow__text arrow--next">{{ __('next step') }}</span>
                 <span class="arrow__info">{{ __('checkout') }}</span>
             </button>
@@ -88,7 +85,7 @@
         //data element init
         var chooseTime = $(this).attr('data-time');
         var id = $(this).attr('data-id');
-        $('.hide').show();
+        $('.class-hide').show();
     });
 </script>
 @endpush

@@ -68,32 +68,21 @@
                     <a href="{{ route('register') }}" class="btn btn--sign">{{ __('Register') }}</a>
                 @endif
             </div>         
-                  
         @else
             <!-- <div class="control-panel"> -->
             <div class="control-panel">
-                <div class="auth auth--home">
-                    <div class="auth__show">
-                        <span class="auth__image">
-                            <img alt="" src="http://placehold.it/31x31">
-                            <i class="fas fa-user-circle fa-fw"></i>
-                        </span>
-                    </div>
-                    <a href="#" class="btn btn--sign btn--singin">
+                <div class="dropdown">
+                    <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown"> 
                         {{ Auth::user()->name }}
-                        
-                    </a>
-                    <ul class="auth__function">
-                        <li><a href="#" class="auth__function-item">{{ __('label.Watchlist') }}</a></li>
-                        <li><a href="#" class="auth__function-item">{{ __('label.Booked-tickets') }}</a></li>
-                        <li><a href="#" class="auth__function-item">{{ __('label.Profile') }}</a></li>
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
                         @if (Auth::user()->role == 1)
-                            <li><a href="{{ route('admin-home') }}" class="auth__function-item">{{ __('label.Admin') }}</a></li>
+                            <li><a href="{{ route('admin-home') }}">{{ __('label.Admin') }}</a></li>
                         @endif
                         <li>                            
-                            <a class="auth__function-item" href="{{ route('logout') }}" data-toggle="modal" data-target="#logoutModal"
+                            <a href="{{ route('logout') }}" data-toggle="modal" data-target="#logoutModal"
                                 onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
+                                    document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST">
@@ -101,7 +90,7 @@
                             </form>
                         </li>
                     </ul>
-                </div>
+                </div> 
             </div>
         @endguest
     </div>
