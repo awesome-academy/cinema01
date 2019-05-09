@@ -48,6 +48,7 @@
         <form method="POST" action="{{ route('bill.store') }}">
             @csrf
             <input type="hidden" name="arrId[]" value="{{ $seatId }}">
+            <input type="hidden" name="showtimeId" value="{{ $id }}">
             <input type="hidden" name="totalMoney" value="{{ $totalMoney }}">
             <div class="order">
                 <button class="btn btn-md btn--warning btn--wide">{{ __('purchase') }}</button>

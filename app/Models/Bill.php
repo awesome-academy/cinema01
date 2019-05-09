@@ -6,9 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bill extends Model
 {
-    protected $fillable = [
-        'create_day',
-        'total',
+    protected $guarded = [
+        'id',
     ];
 
     public function billDetails()

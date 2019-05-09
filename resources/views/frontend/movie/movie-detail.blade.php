@@ -87,6 +87,8 @@
 @push('scripts')
 <script type="text/javascript">
     $('.time-select__item').click(function () {
+        $('.time-select__item').removeClass('active');
+        $(this).addClass('active');
         //data element init
         var chooseTime = $(this).attr('data-time');
         var id = $(this).attr('data-id');

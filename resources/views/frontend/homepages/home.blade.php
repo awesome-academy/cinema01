@@ -98,16 +98,16 @@
         <div class="col-sm-12 change--col">
             @foreach ($best as $data)
                 <div class="movie-beta__item ">
-                    <img alt='' src="{{ asset(config('app.image_url') . '380x600.png') }}">
+                    <img class="resize-best-movie" alt='' src="{{ asset(config('app.upload_cover') . $data->image) }}">
                     <span class="best-rate">{{ __('label.rate', ['data' => round($data->point, 1)]) }}</span>
                     <ul class="movie-beta__info">
                         <li><span class="best-voted">{{ __('label.vote_day', ['data' => '70']) }}</span></li>
                         <li>
-                            <p class="movie__time">{{ __('label.movie_time', ['data' => $data->movie->time]) }}</p>
-                            <p>{{ __('label.movie_type', ['data' => $data->movie->type]) }}</p>
+                            <p class="movie__time">{{ __('label.movie_time', ['data' => $data->time]) }}</p>
+                            <p>{{ __('label.movie_type', ['data' => $data->type]) }}</p>
                         </li>
                         <li class="last-block">
-                            <a href="{{ route('movie-detail.show', ['id' => $data->movie->id]) }}" class="slide__link">{{ __('label.more') }}</a>
+                            <a href="{{ route('movie-detail.show', ['id' => $data->id]) }}" class="slide__link">{{ __('label.more') }}</a>
                         </li>
                     </ul>
                 </div>

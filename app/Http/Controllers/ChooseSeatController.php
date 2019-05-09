@@ -12,6 +12,8 @@ use App\Models\Seat_row;
 
 use App\Models\Showtime;
 
+use Session;
+
 class ChooseSeatController extends Controller
 {
     /**
@@ -54,7 +56,6 @@ class ChooseSeatController extends Controller
     {
         $id = $request->showtime_id;
         $seatRow = $this->takeSeat($id);
-        // $seatCol = $this->takeSeat($id);
         $seatCount = $this->takeSeat($id);
         $max = 0;
         foreach ($seatCount as $seat)
@@ -64,8 +65,9 @@ class ChooseSeatController extends Controller
             }
         }
         $seatCol = $this->getSeatPrice($id);
+        session(['checkPayment' => true]);
 
-        return view('frontend.booking.choose-seat', compact('seatRow', 'seatCol', 'max'));
+        return view('frontend.booking.choose-seat', compact('id', 'seatRow', 'seatCol', 'max'));
     }
     private function getSeatPrice($id)
     {

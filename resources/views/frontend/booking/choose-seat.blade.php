@@ -61,6 +61,7 @@
 <form id='showtimeForm' method="POST" action="{{ route('payment.store') }}">
     @csrf
     <input type="hidden" name="seatId[]" id="seatId">
+    <input type="hidden" name="showtimeId" id="showtimeId" value="{{ $id }}">
     <input type="hidden" name="result" id="result">
     <div id="booking-next" class="booking-pagination">
         <a href="{{ URL::previous() }}" class="booking-pagination__prev">

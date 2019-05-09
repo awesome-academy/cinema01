@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
 {
-    protected $fillable = [
-        'code',
+    protected $guarded = [
+        'id',
     ];
 
     public function bill()
