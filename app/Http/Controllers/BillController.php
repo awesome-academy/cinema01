@@ -62,7 +62,7 @@ class BillController extends Controller
                 'total' => $totalMoney,
                 'user_id' => Auth::id(),
                 ]);
-            $billId = Bill::orderBy('created_at', 'desc')->first();
+            $billId = Bill::orderBy('created_at', 'desc')->firstOrFail();
             $code = str_random(8);
             foreach ($arrSeat as $seat) {
                 Ticket::create([

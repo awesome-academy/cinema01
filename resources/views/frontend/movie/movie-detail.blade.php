@@ -46,23 +46,29 @@
             <div class="choose-container">
                 <div class="clearfix"></div>
                 <div class="time-select">
-                    @foreach ($cinema as $cinema)
-                        <div class="time-select__group">
-                            <div class="col-sm-4">
-                                <p class="time-select__place">{{ $cinema->name }}</p>
-                            </div>
-                            <ul class="col-sm-8 items-wrap">
-                                @foreach ($cinema->rooms as $room)
-                                    @foreach ($room->showtimes as $showtime)
-                                        <li class="time-select__item" data-id='{{ $showtime->id }}' data-time='{{ $timestart = \Carbon\Carbon::parse($showtime->timestart)->format('H:i') }}'>{{ $timestart }}</li>
+                    @if ($movie->status == 1)
+                        @foreach ($cinema as $cinema)
+                            <div class="time-select__group">
+                                <div class="col-sm-4">
+                                    <p class="time-select__place">{{ $cinema->name }}</p>
+                                </div>
+                                <ul class="col-sm-8 items-wrap">
+                                    @foreach ($cinema->rooms as $room)
+                                        @foreach ($room->showtimes as $showtime)
+                                            <li class="time-select__item" data-id='{{ $showtime->id }}' data-time='{{ $timestart = \Carbon\Carbon::parse($showtime->timestart)->format('H:i') }}'>{{ $timestart }}</li>
+                                        @endforeach
                                     @endforeach
-                                @endforeach
-                            </ul> 
+                                </ul> 
+                            </div>
+                        @endforeach
+                        <div class="choose-indector choose-indector--time">
+                            <strong>{{ __('label.choosen') }}</strong><span class="choosen-area"></span>
                         </div>
-                    @endforeach
-                </div>
-                <div class="choose-indector choose-indector--time">
-                    <strong>{{ __('label.choosen') }}</strong><span class="choosen-area"></span>
+                    @elseif ($movie->status == 2)
+                    <div class="contact">
+                        <p class="contact__title">{{ __('Comming Soon') }}</p>
+                    </div>                
+                    @endif
                 </div>
             </div>
         </div>

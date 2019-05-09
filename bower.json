@@ -32,6 +32,7 @@
     "jquery.dataTables.min": "http://cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css",
     "dataTables.bootstrap4.min": "https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css",
     "dataTables.bootstrap4.min.js": "https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js",
-    "jquery.validate": "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"
+    "jquery.validate": "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js",
+    "mvo1": "https://github.com/nguyenthithu1612/mvo1.git"
   }
 }
