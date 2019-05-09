@@ -11,9 +11,9 @@ class Seat_type extends Model
         'note',
     ];
     
-    public function seatPrice()
+    public function seatPrices()
     {
-        return $this->hasOne('App\Models\Seat_type');
+        return $this->hasMany('App\Models\Seat_price');
     }
 
     public function seatRows()

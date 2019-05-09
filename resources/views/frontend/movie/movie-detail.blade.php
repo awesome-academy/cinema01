@@ -1,6 +1,12 @@
 @extends('frontend.layouts.master')
 @section('content')
 <!-- Main content -->
+<div class="choose-film">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+      </div>
+    </div>
+</div>
 <section class="container">
     <div class="col-sm-12">
         <div class="movie">
@@ -48,16 +54,46 @@
                             <ul class="col-sm-8 items-wrap">
                                 @foreach ($cinema->rooms as $room)
                                     @foreach ($room->showtimes as $showtime)
-                                        <li class="time-select__item" data-time='{{ $timestart = \Carbon\Carbon::parse($showtime->timestart)->format('H:i') }}'>{{ $timestart }}</li>
+                                        <li class="time-select__item" data-id='{{ $showtime->id }}' data-time='{{ $timestart = \Carbon\Carbon::parse($showtime->timestart)->format('H:i') }}'>{{ $timestart }}</li>
                                     @endforeach
                                 @endforeach
                             </ul> 
                         </div>
                     @endforeach
                 </div>
+                <div class="choose-indector choose-indector--time">
+                    <strong>{{ __('label.choosen') }}</strong><span class="choosen-area"></span>
+                </div>
             </div>
         </div>
     </div>
 </section>
 <div class="clearfix"></div>
-@endsection
+<form id='showtimeForm' class='booking-form' method="POST" action="{{ route('choose-seat.store') }}">
+    @csrf
+    <input type="hidden" name="showtime_id" id="showtime_id">
+    <div id="booking-next" class="booking-pagination hide">
+            <a href="#" class="booking-pagination__prev hide--arrow">
+                <span class="arrow__text arrow--prev"></span>
+                <span class="arrow__info"></span>
+            </a>
+            <button class="booking-pagination__next">
+                <span class="arrow__text arrow--next">{{ __('next step') }}</span>
+                <span class="arrow__info">{{ __('choose a sit') }}</span>
+            </button>
+    </div>
+</form>
+@stop
+@push('scripts')
+<script type="text/javascript">
+    $('.time-select__item').click(function () {
+        //data element init
+        var chooseTime = $(this).attr('data-time');
+        var id = $(this).attr('data-id');
+        $('.choose-indector--time').find('.choosen-area').text(chooseTime);
+        $('.booking-pagination').show();
+        //gán showtime_id form
+        $('#showtime_id').val(id);
+    });
+</script>
+@endpush
