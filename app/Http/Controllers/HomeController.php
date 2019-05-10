@@ -19,16 +19,15 @@ class HomeController extends Controller
      */
     public function index()
     {   
-        $best = Vote::with('movie')
-                    ->groupBy('movie_id')
-                    ->select('movie_id', DB::raw('AVG( votes.point ) as point'))
-                    ->orderBy('point', 'DESC')
-                    ->take(config('const.best_movie'))
-                    ->get();
+        $m = Movie::with('votes')->get();
+        foreach ($m as $key => $data) {
+            $m[$key]['point'] = $data->votes->avg('point');
+        }        
+        $best = $m->sortByDesc('point')->take(config('const.best_movie'));
         $new = Movie::with('votes')
-                    ->orderBy('day_start', 'DESC')
-                    ->take(config('const.new_movie'))
-                    ->get();
+            ->orderBy('day_start', 'DESC')
+            ->take(config('const.new_movie'))
+            ->get();
 
         return view('frontend.homepages.home', compact('best', 'new'));
     }

@@ -12,6 +12,10 @@ use App\Models\Seat_row;
 
 use App\Models\Showtime;
 
+use Session;
+
+use Illuminate\Support\Facades\URL;
+
 class PaymentController extends Controller
 {
     /**
@@ -19,6 +23,15 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $redirectTo = '/';
+    public function __construct()
+    {
+        Session::put('backUrl', URL::previous());
+    }
+    public function redirectTo()
+    {
+        return Session::get('backUrl') ? Session::get('backUrl') : $this->redirectTo;
+    }
     public function index()
     {
         //
@@ -42,11 +55,16 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        $seat = explode(',', $request->seatId[0]);
-        $seatId = $request->seatId[0];
-        $totalMoney = $this->getAllSeatPrice($seat);
-
-        return view('frontend.booking.payment', compact('seat','seatId' , 'totalMoney'));
+        if (Session::get('checkPayment')) {
+            $id = $request->showtimeId;
+            $seat = explode(',', $request->seatId[0]);
+            $seatId = $request->seatId[0];
+            $totalMoney = $this->getAllSeatPrice($seat);
+            
+            return view('frontend.booking.payment', compact('id', 'seat', 'seatId' , 'totalMoney'));
+        } else {
+            return redirect($this->redirectTo());
+        }
     }
 
     private function getAllSeatPrice($arrId)
