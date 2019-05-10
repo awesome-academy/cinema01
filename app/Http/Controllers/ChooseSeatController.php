@@ -71,12 +71,19 @@ class ChooseSeatController extends Controller
     }
     private function getSeatPrice($id)
     {
-        $roomTypeId = Showtime::findOrFail($id)->room->roomType->id;
+        $showtime = Showtime::findOrFail($id);
+        $roomTypeId = $showtime->room->roomType->id;
+        $showtime_id = $showtime->id;
         $roomId = Showtime::findOrFail($id)->room->id;
         $seatFilter = function ($query) use ($roomTypeId) {
             $query->where('room_type_id', $roomTypeId);
         };
+        $stFilter = function ($query) use ($showtime_id) {
+            $query->where('id', $showtime_id);
+        };
         $seat = Seat_Row::with('seatCols')
+            ->with(['room.showtimes' => $stFilter])
+            ->whereHas('room.showtimes', $stFilter)
             ->with(['seatType.seatPrices' => $seatFilter])
             ->whereHas('seatType.seatPrices', $seatFilter)
             ->get();

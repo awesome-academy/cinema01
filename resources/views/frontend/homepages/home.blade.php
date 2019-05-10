@@ -5,7 +5,7 @@
     <div class="banner">
         <ul>
             <li data-transition="fade" data-slotamount="7" class="slide fading-slide" data-slide='Travel worldwide. Create trip film. '>
-                <img alt='' src="{{ asset(config('app.image_url') . '1920x616.png') }}">
+                <img alt='' src="{{ asset(config('app.image_url') . 'cover1.jpg') }}">
                 <div class="caption slide__name slide__name--smaller"
                     data-x="left"
                     data-y="160"
@@ -153,7 +153,7 @@
                     <div class="movie movie--test movie--test--dark movie--test--left">
                         <div class="movie__images">
                             <a href="{{ route('movie-detail.show', ['id' => $data->id]) }}" class="movie-beta__link">
-                                <img alt='' src="{{ asset(config('app.image_url') . '424x424.png') }}">
+                                <img class="resize-now-movie-home" alt='' src="{{ asset(config('app.upload_cover') . $data->image) }}">
                             </a>
                         </div>
                         <div class="movie__info">
