@@ -123,6 +123,7 @@ return [
     'dayStart' => 'Day start',
     'coverImage' => 'Cover Image',
     'trailer' => 'Trailer',
+    'choosen' => 'Choosen: ',
     //footer
     'by' => 'By :company',
     'web-name' => 'A.MOVIE',

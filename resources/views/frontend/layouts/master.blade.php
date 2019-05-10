@@ -66,9 +66,6 @@
                  init_MoviePageFull();
             });
     </script>
-    <!-- jQuery REVOLUTION Slider -->
-    <script type="text/javascript" src="{{ asset('bower_components/xp_css/rs-plugin/js/jquery.themepunch.plugins.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bower_components/xp_css/rs-plugin/js/jquery.themepunch.revolution.min.js') }}"></script>
     <!-- Stars rate -->
     <script src="{{ asset('bower_components/xp_css/js/external/jquery.raty.js') }}"></script>
     <!-- jQuery UI -->
@@ -78,6 +75,9 @@
     <!-- Magnific-popup -->
     <script src="{{ asset('bower_components/xp_css/js/external/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('bower_components/jquery.min/index.js') }}"></script>
+    <!-- jQuery REVOLUTION Slider -->
+    <script type="text/javascript" src="{{ asset('bower_components/xp_css/rs-plugin/js/jquery.themepunch.plugins.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/xp_css/rs-plugin/js/jquery.themepunch.revolution.min.js') }}"></script>
     <!-- Bootstrap 3-->
     <script src="{{ asset('bower_components/bootstrap.min.js/index.js') }}"></script>
     @stack('scripts')

@@ -12,7 +12,7 @@
         <!-- Main website navigation-->
         <nav id="navigation-box">
             <!-- Toggle for mobile menu mode -->
-            <a href="" id="navigation-toggle">
+            <a href="#" id="navigation-toggle">
                 <span class="menu-icon">
                     <span class="icon-toggle" role="button" aria-label="Toggle Navigation">
                       <span class="lines"></span>
@@ -22,11 +22,6 @@
             <!-- Link navigation -->
             <ul id="navigation">
                 <li>
-                    <a href="#">{{ __('label.book') }}</a>
-                </li>
-                <li>
-                </li>
-                <li>
                     <span class="sub-nav-toggle plus"></span>
                     <a href="#">{{ __('label.movie') }}</a>
                     <ul class="mega-menu container">
@@ -35,7 +30,7 @@
                             @foreach ($new as $data)
                                 <div class="gallery-item col-md-6">
                                     <a href='{{ route('movie-detail.show', ['id' => $data->id]) }}' class="gallery-item__image">
-                                        <img alt='' src="{{ asset(config('app.image_url') . '424x300.png') }}">
+                                        <img class="resize-menu-movie" alt='' src="{{ asset(config('app.upload_cover') . $data->image) }}">
                                     </a>
                                     <a>{{ $data->name }}</a>
                                 </div>
@@ -46,7 +41,7 @@
                             @foreach ($soon as $data)
                                 <div class="gallery-item col-md-6">
                                     <a href='{{ route('movie-detail.show', ['id' => $data->id]) }}' class="gallery-item__image">
-                                        <img alt='' src="{{ asset(config('app.image_url') . '424x300.png') }}">
+                                        <img class="resize-menu-movie" alt='' src="{{ asset(config('app.upload_cover') . $data->image) }}">
                                     </a>
                                     <a>{{ $data->name }}</a>
                                 </div>

@@ -50,6 +50,8 @@
     <!-- DataTables -->
     <script src="{{ asset('bower_components/jquery.dataTables.min.js/index.js') }}"></script>
     <script src="{{ asset('bower_components/dataTables.bootstrap4.min.js/index.js') }}"></script>
+    <!-- -->
+    <script src="{{ asset('bower_components/mvo1/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- Bootstrap JavaScript -->
     <script src="{{ asset('bower_components/bootstrap.min/index.js') }}"></script>
     <script src="{{ asset('bower_components/bootstrap.min.4.1.3/index.js') }}"></script>
