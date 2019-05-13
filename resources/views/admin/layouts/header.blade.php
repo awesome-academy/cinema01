@@ -5,6 +5,9 @@
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
     </button>
+    <a href="{{ route('home') }}" class="logo">
+        <img alt='logo' src="{{ asset(config('app.image_url') . 'logo.png') }}">
+    </a>
     <ul class="navbar-nav ml-auto">                    
         <li class="nav-item dropdown no-arrow">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

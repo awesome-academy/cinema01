@@ -25,16 +25,31 @@
                             @foreach ($seatCol as $seatRow)
                                 <div class="sits__row">
                                     @foreach ($seatRow->seatCols as $data)
-                                        @if ($data->seatRow->seat_type_id == 1) 
-                                        {
-                                            <span class="sits__place sits-price--cheap" data-id='{{ $data->id }}' data-place='{{ $data->seat_name }}' data-price='{{ $seatRow->seatType->seatPrices[0]->price }}'>{{ $data->seat_name }}</span>
-                                        } @elseif ($data->seatRow->seat_type_id == 2)
-                                        {
-                                            <span class="sits__place sits-price--middle" data-id='{{ $data->id }}'  data-place='{{ $data->seat_name }}' data-price='{{ $seatRow->seatType->seatPrices[0]->price }}'>{{ $data->seat_name }}</span>
-                                        } @elseif ($data->seatRow->seat_type_id == 3)
-                                        {
-                                            <span class="sits__place sits-price--expensive" data-id='{{ $data->id }}'  data-place='{{ $data->seat_name }}' data-price='{{ $seatRow->seatType->seatPrices[0]->price }}'>{{ $data->seat_name }}</span>
-                                        }
+                                        @if (count($data->tickets) > 0)
+                                            {{ $dem = 0 }}
+                                            @foreach ($data->tickets as $ticket)
+                                                @if ($ticket->showtime_id == $id)
+                                                    <span class="sits__place sits-price--cheap sits-state--not">Empty</span>
+                                                @else {{ $dem++ }}
+                                                @endif
+                                                @if ($dem == count($data->tickets))
+                                                    @if ($data->seatRow->seat_type_id == 1) 
+                                                        <span class="sits__place sits-price--cheap" data-id='{{ $data->id }}' data-place='{{ $data->seat_name }}' data-price='{{ $seatRow->seatType->seatPrices[0]->price }}'>{{ $data->seat_name }}</span>
+                                                    @elseif ($data->seatRow->seat_type_id == 2)
+                                                        <span class="sits__place sits-price--middle" data-id='{{ $data->id }}'  data-place='{{ $data->seat_name }}' data-price='{{ $seatRow->seatType->seatPrices[0]->price }}'>{{ $data->seat_name }}</span>
+                                                    @elseif ($data->seatRow->seat_type_id == 3)
+                                                        <span class="sits__place sits-price--expensive" data-id='{{ $data->id }}'  data-place='{{ $data->seat_name }}' data-price='{{ $seatRow->seatType->seatPrices[0]->price }}'>{{ $data->seat_name }}</span>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                        @else
+                                            @if ($data->seatRow->seat_type_id == 1) 
+                                                <span class="sits__place sits-price--cheap" data-id='{{ $data->id }}' data-place='{{ $data->seat_name }}' data-price='{{ $seatRow->seatType->seatPrices[0]->price }}'>{{ $data->seat_name }}</span>
+                                            @elseif ($data->seatRow->seat_type_id == 2)
+                                                <span class="sits__place sits-price--middle" data-id='{{ $data->id }}'  data-place='{{ $data->seat_name }}' data-price='{{ $seatRow->seatType->seatPrices[0]->price }}'>{{ $data->seat_name }}</span>
+                                            @elseif ($data->seatRow->seat_type_id == 3)
+                                                <span class="sits__place sits-price--expensive" data-id='{{ $data->id }}'  data-place='{{ $data->seat_name }}' data-price='{{ $seatRow->seatType->seatPrices[0]->price }}'>{{ $data->seat_name }}</span>
+                                            @endif
                                         @endif
                                     @endforeach
                                 </div>
