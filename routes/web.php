@@ -16,6 +16,7 @@ Route::group(['middleware' => 'user'], function() {
     Route::resource('choose-seat', 'ChooseSeatController');
     Route::resource('payment', 'PaymentController');
     Route::resource('bill', 'BillController');
+    Route::resource('profile', 'UserController');
 });
 Route::get('now-showing', 'MovieController@nowShowing')->name('now-showing');
 Route::get('comming-soon', 'MovieController@commingSoon')->name('comming-soon');

@@ -1,7 +1,3 @@
-<!-- Banner -->
-<div class="banner-top">
-    <img alt='top banner' src="{{ asset(config('app.image_url') . '1600x90.png') }}">
-</div>
 <!-- Header section -->
 <header class="header-wrapper">
     <div class="container">
@@ -71,6 +67,7 @@
                         {{ Auth::user()->name }}
                     <span class="caret"></span></button>
                     <ul class="dropdown-menu">
+                        <li><a href="{{ route('profile.index') }}">{{ __('label.profile') }}</a></li>
                         @if (Auth::user()->role == 1)
                             <li><a href="{{ route('admin-home') }}">{{ __('label.Admin') }}</a></li>
                         @endif
