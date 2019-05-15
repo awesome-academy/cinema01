@@ -33,3 +33,4 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     Route::resource('movie', 'MovieController');
     Route::resource('showtime', 'ShowtimeController');
 });
+Route::get('/search', 'SearchController@searchFullText')->name('search');

@@ -4,12 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Traits\FullTextSearch;
+
 use App\Models\Showtime;
 
 use DB;
 
 class Movie extends Model
 {
+    use FullTextSearch;
+    protected $searchable = [
+        'name',
+    ];
+
     protected $guarded = [
         'id',
     ];
