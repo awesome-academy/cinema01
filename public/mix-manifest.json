@@ -1,4 +1,4 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/typeahead/typeahead.bundle.min.js": "/typeahead/typeahead.bundle.min.js",
+    "/custom-css/css.css": "/custom-css/css.css"
 }

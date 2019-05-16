@@ -31,6 +31,8 @@
     <link href="{{ asset('bower_components/xp_css/css/style.css?v=1') }}" rel="stylesheet" />
     <!-- Modernizr --> 
     <script src="{{ asset('bower_components/xp_css/js/external/modernizr.custom.js') }}"></script>
+    <!-- Custom css -->
+    <link href="{{ asset('custom-css/css.css') }}" rel="stylesheet" />
 </head>
 <body>
     <div class="wrapper">
@@ -80,6 +82,8 @@
     <script type="text/javascript" src="{{ asset('bower_components/xp_css/rs-plugin/js/jquery.themepunch.revolution.min.js') }}"></script>
     <!-- Bootstrap 3-->
     <script src="{{ asset('bower_components/bootstrap.min.js/index.js') }}"></script>
+    <!-- Typeahead -->
+    <script src="{{ asset('typeahead/typeahead.bundle.min.js') }}"></script> 
     @stack('scripts')
 </body>
 </html>

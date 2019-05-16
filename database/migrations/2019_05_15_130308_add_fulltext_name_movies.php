@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RenameColumnShowtimes extends Migration
+class AddFulltextNameMovies extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class RenameColumnShowtimes extends Migration
      */
     public function up()
     {
-        Schema::table('showtimes', function (Blueprint $table) {
-            $table->renameColumn('timestar', 'timestart');
+        Schema::table('movies', function (Blueprint $table) {
+            DB::statement('ALTER TABLE posts ADD FULLTEXT full(name, content)');
         });
+        
     }
 
     /**
@@ -25,8 +26,8 @@ class RenameColumnShowtimes extends Migration
      */
     public function down()
     {
-        Schema::table('showtimes', function (Blueprint $table) {
-            $table->renameColumn('timestart', 'timestar');
+        Schema::table('movies', function (Blueprint $table) {
+            DB::statement('ALTER TABLE films DROP INDEX full');
         });
     }
 }

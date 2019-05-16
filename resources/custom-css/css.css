@@ -1,0 +1,24 @@
+.movie_search_info {
+    overflow: hidden;
+    position: relative;
+    min-height: 50px;
+    margin: 0;
+}
+.custom-movie--test {
+    width: 100%;
+    float: left;
+    margin-bottom: 8px;
+}
+.custom-img-thumbnail {
+    width: 160px;
+    height: 240px;
+    object-fit: cover;
+}
+.tt-dataset-movie {
+    padding: 10px;
+    border-radius: 10px;
+}
+.tt-selectable {
+    display: inline;
+    margin: 5px;
+}

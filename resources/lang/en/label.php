@@ -196,4 +196,6 @@ return [
     'tk_film' => 'Film',
     'tk_seat' => 'Seat: ',
     'tk_dvt' => ' VNĐ',
+    //search
+    'notFound' => 'No matching results.',
 ];

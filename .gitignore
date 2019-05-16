@@ -13,3 +13,5 @@ yarn-error.log
 /public/css
 /public/js
 /public/upload
+/public/typeahead
+/public/custom-css
