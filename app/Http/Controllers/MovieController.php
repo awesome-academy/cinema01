@@ -41,7 +41,16 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id = $request->idFilter;
+        $date = $request->dateFilter;
+        $movieFilter = function ($query) use ($id, $date) {
+            $query->where('movie_id', $id)->where('timestart', 'like', $date . '%');
+        };
+        $cinema = Cinema::with(['rooms.showtimes' => $movieFilter])
+            ->whereHas('rooms.showtimes', $movieFilter)
+            ->get();
+
+        return response()->json($cinema);
     }
 
     /**
@@ -60,7 +69,7 @@ class MovieController extends Controller
         $cinema = Cinema::with(['rooms.showtimes' => $movieFilter])
             ->whereHas('rooms.showtimes', $movieFilter)
             ->get();
-        
+
         return view('frontend.movie.movie-detail', compact('movie', 'vote', 'cinema'));
     }
 

@@ -33,6 +33,8 @@
     <script src="{{ asset('bower_components/xp_css/js/external/modernizr.custom.js') }}"></script>
     <!-- Custom css -->
     <link href="{{ asset('custom-css/css.css') }}" rel="stylesheet" />
+    <link rel="stylesheet prefetch" href="{{ asset('bower_components/datepicker/index.css') }}">
+
 </head>
 <body>
     <div class="wrapper">
@@ -83,7 +85,8 @@
     <!-- Bootstrap 3-->
     <script src="{{ asset('bower_components/bootstrap.min.js/index.js') }}"></script>
     <!-- Typeahead -->
-    <script src="{{ asset('typeahead/typeahead.bundle.min.js') }}"></script> 
+    <script src="{{ asset('typeahead/typeahead.bundle.min.js') }}"></script>
+    <script src="{{ asset('bower_components/bootstrap-datepicker/index.js') }}"></script>
     @stack('scripts')
 </body>
 </html>

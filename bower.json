@@ -33,6 +33,8 @@
     "dataTables.bootstrap4.min": "https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css",
     "dataTables.bootstrap4.min.js": "https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js",
     "jquery.validate": "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js",
-    "mvo1": "https://github.com/nguyenthithu1612/mvo1.git"
+    "mvo1": "https://github.com/nguyenthithu1612/mvo1.git",
+    "bootstrap-datepicker": "http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js",
+    "datepicker": "http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css"
   }
 }
