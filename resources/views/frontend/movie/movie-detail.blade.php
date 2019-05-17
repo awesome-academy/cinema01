@@ -1,6 +1,7 @@
 @extends('frontend.layouts.master')
 @section('content')
 <!-- Main content -->
+<input type="hidden" class="getIdMovie" value="{{ $movie->status }}">
 <div class="choose-film">
     <div class="swiper-container">
       <div class="swiper-wrapper">
@@ -39,37 +40,21 @@
                     </div>
                 </div>
             </div>  
-            <div class="clearfix"></div>      
+            <div class="clearfix"></div>
             <h2 class="page-heading">{{ __('label.plot') }}</h2>
             <p class="movie__describe">{{ $movie->content }}</p>
             <h2 class="page-heading">{{ __('label.showtime_ticket') }}</h2>
+            <div class="col-md-3">
+                <div id="datepicker" class="input-group date" data-date-format="yyyy-mm-dd">
+                    <input class="form-control inputDate" readonly="" type="text">
+                    <span class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </span> 
+                </div>
+            </div>
             <div class="choose-container">
                 <div class="clearfix"></div>
-                <div class="time-select">
-                    @if ($movie->status == 1)
-                        @foreach ($cinema as $cinema)
-                            <div class="time-select__group">
-                                <div class="col-sm-4">
-                                    <p class="time-select__place">{{ $cinema->name }}</p>
-                                </div>
-                                <ul class="col-sm-8 items-wrap">
-                                    @foreach ($cinema->rooms as $room)
-                                        @foreach ($room->showtimes as $showtime)
-                                            <li class="time-select__item" data-id='{{ $showtime->id }}' data-time='{{ $timestart = \Carbon\Carbon::parse($showtime->timestart)->format('H:i') }}'>{{ $timestart }}</li>
-                                        @endforeach
-                                    @endforeach
-                                </ul> 
-                            </div>
-                        @endforeach
-                        <div class="choose-indector choose-indector--time">
-                            <strong>{{ __('label.choosen') }}</strong><span class="choosen-area"></span>
-                        </div>
-                    @elseif ($movie->status == 2)
-                    <div class="contact">
-                        <p class="contact__title">{{ __('Comming Soon') }}</p>
-                    </div>                
-                    @endif
-                </div>
+                <div class="time-select"></div>
             </div>
         </div>
     </div>
@@ -89,19 +74,76 @@
             </button>
     </div>
 </form>
+<form id="dateAndId">
+    @csrf
+    <input type="hidden" name="idFilter" class="idFilter" value="{{ $movie->id }}">
+    <input type="hidden" name="dateFilter" class="dateFilter">
+</form>
 @stop
 @push('scripts')
 <script type="text/javascript">
-    $('.time-select__item').click(function () {
-        $('.time-select__item').removeClass('active');
-        $(this).addClass('active');
-        //data element init
-        var chooseTime = $(this).attr('data-time');
-        var id = $(this).attr('data-id');
-        $('.choose-indector--time').find('.choosen-area').text(chooseTime);
-        $('.class-hide').show();
-        //gán showtime_id form
-        $('#showtime_id').val(id);
-    });
+    $("#datepicker").datepicker({
+        autoclose: true,
+        todayHighlight: true,
+    }).change(function () {
+        var date = $('.inputDate').val();
+        var input = new Date(date);
+        var today = new Date;
+        if (input >= today)
+        {
+            $('.dateFilter').val(date);
+            $.ajax({
+                data: $('#dateAndId').serialize(),
+                url: "{{ route('movie-detail.store') }}",
+                type: "POST",
+                dataType: 'json',
+                success: function (data) {
+                    var status = $('.getIdMovie').val();
+                    var html = '';
+                    console.log(status);
+                    if (status == 2)
+                    {
+                        html += `<div class="contact">
+                            <p class="contact__title">{{ __('Comming Soon') }}</p>
+                        </div>`;
+                    } else if (status == 1) {
+                        $.each( data, function(key, cinema) {
+                            html += `<div class="time-select__group">
+                                <div class="col-sm-4">
+                                    <p class="time-select__place">` + cinema.name + `</p>
+                                </div>
+                                <ul class="col-sm-8 items-wrap">`;
+                                $.each(cinema.rooms, function(key2, room) {
+                                    $.each(room.showtimes, function(key3, showtime) {
+                                        html += `<li class='time-select__item selectShowtime' data-id=` + showtime.id + ` onclick='myFun()'>` + showtime.timestart.substr(11, 5 ) + `</li>`;
+                                    });
+                                });
+                                html += `</ul></div>`;
+                        });
+                        html += `<div class="choose-indector choose-indector--time">
+                            <strong>{{ __('label.choosen') }}</strong><span class="choosen-area"></span>
+                        </div>`;
+                    }
+                    $('.time-select').html(html);
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        }
+    }).datepicker('update', new Date());
+    function myFun () { 
+       $('.time-select__item').click(function () {
+            $('.time-select__item').removeClass('active');
+            $(this).addClass('active');
+            //data element init
+            var chooseTime = $(this).attr('data-time');
+            var id = $(this).attr('data-id');
+            $('.choose-indector--time').find('.choosen-area').text(chooseTime);
+            $('.class-hide').show();
+            //gán showtime_id form
+            $('#showtime_id').val(id);
+        });
+    }
 </script>
 @endpush
