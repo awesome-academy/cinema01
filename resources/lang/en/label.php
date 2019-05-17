@@ -198,4 +198,20 @@ return [
     'tk_dvt' => ' VNĐ',
     //search
     'notFound' => 'No matching results.',
+    //booking
+    'firstStep' => '1. What & Where & When',
+    'secondStep' => '2. Choose a sit',
+    'thirdStep' => '3. Check out',
+    'nextStep' => 'next step',
+    'prevStep' => 'prev step',
+    'checkout' => 'checkout',
+    'chooseMovie' => 'Choose a movie',
+    'orderDescript' => 'and have fun movie time',
+    'cityDate' => 'Date',
+    'pickTime' => 'Pick time',
+    'chooseSit' => 'choose a sit',
+    'choosePayment' => 'Choose payment method',
+    'tickets' => 'Tickets: ',
+    'total' => 'Total: ',
+    'purchase' => 'purchase',
 ];

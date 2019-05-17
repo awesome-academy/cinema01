@@ -86,8 +86,9 @@
         autoclose: true,
         todayHighlight: true,
     }).change(function () {
+        $('.class-hide').hide();
         var date = $('.inputDate').val();
-        var input = new Date(date);
+        var input = new Date(date + 'T17:00:00Z');
         var today = new Date;
         if (input >= today)
         {
@@ -100,7 +101,6 @@
                 success: function (data) {
                     var status = $('.getIdMovie').val();
                     var html = '';
-                    console.log(status);
                     if (status == 2)
                     {
                         html += `<div class="contact">
@@ -115,7 +115,7 @@
                                 <ul class="col-sm-8 items-wrap">`;
                                 $.each(cinema.rooms, function(key2, room) {
                                     $.each(room.showtimes, function(key3, showtime) {
-                                        html += `<li class='time-select__item selectShowtime' data-id=` + showtime.id + ` onclick='myFun()'>` + showtime.timestart.substr(11, 5 ) + `</li>`;
+                                        html += `<li class='time-select__item selectShowtime' data-time='` + showtime.timestart.substr(11, 5) + `' data-id=` + showtime.id + ` onclick='myFun()'>` + showtime.timestart.substr(11, 5) + `</li>`;
                                     });
                                 });
                                 html += `</ul></div>`;

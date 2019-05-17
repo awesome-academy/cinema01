@@ -21,8 +21,6 @@
     <link href="{{ asset('bower_components/xp_css/css/gozha-nav.css') }}" rel="stylesheet" />
     <!-- Select -->
     <link href="{{ asset('bower_components/xp_css/css/external/jquery.selectbox.css') }}" rel="stylesheet" />
-    <!-- Swiper slider -->
-    <link href="{{ asset('bower_components/xp_css/css/external/idangerous.swiper.css') }}" rel="stylesheet" />
     <!-- Magnific-popup -->
     <link href="{{ asset('bower_components/xp_css/css/external/magnific-popup.css') }}" rel="stylesheet" />
     <!-- REVOLUTION BANNER CSS SETTINGS -->
@@ -32,9 +30,9 @@
     <!-- Modernizr --> 
     <script src="{{ asset('bower_components/xp_css/js/external/modernizr.custom.js') }}"></script>
     <!-- Custom css -->
-    <link href="{{ asset('custom-css/css.css') }}" rel="stylesheet" />
     <link rel="stylesheet prefetch" href="{{ asset('bower_components/datepicker/index.css') }}">
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/swiper/dist/css/swiper.min.css') }}">
+    <link href="{{ asset('custom-css/css.css') }}" rel="stylesheet" />
 </head>
 <body>
     <div class="wrapper">
@@ -55,27 +53,18 @@
     <script src="{{ asset('bower_components/xp_css/js/jquery.mobile.menu.js') }}"></script>
      <!-- Select -->
     <script src="{{ asset('bower_components/xp_css/js/external/jquery.selectbox-0.2.min.js') }}"></script>
+    <!-- Swiper slider -->
+        <script src="{{ asset('bower_components/xp_css/js/external/idangerous.swiper.min.js') }}"></script>
     <!-- Form element -->
     <script src="{{ asset('bower_components/xp_css/js/external/form-element.js') }}"></script>
     <!-- Form validation -->
     <script src="{{ asset('bower_components/xp_css/js/form.js') }}"></script>
     <!-- Custom -->
     <script src="{{ asset('bower_components/xp_css/js/custom.js') }}"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            init_Home();
-        });
-        $(document).ready(function() {
-                init_MoviePage();
-                 init_MoviePageFull();
-            });
-    </script>
     <!-- Stars rate -->
     <script src="{{ asset('bower_components/xp_css/js/external/jquery.raty.js') }}"></script>
     <!-- jQuery UI -->
     <script src="{{ asset('bower_components/jquery-ui/index.js') }}"></script>
-    <!-- Swiper slider -->
-    <script src="{{ asset('bower_components/xp_css/js/external/idangerous.swiper.min.js') }}"></script>
     <!-- Magnific-popup -->
     <script src="{{ asset('bower_components/xp_css/js/external/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('bower_components/jquery.min/index.js') }}"></script>
@@ -87,6 +76,7 @@
     <!-- Typeahead -->
     <script src="{{ asset('typeahead/typeahead.bundle.min.js') }}"></script>
     <script src="{{ asset('bower_components/bootstrap-datepicker/index.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/swiper/dist/js/swiper.min.js') }}"></script>
     @stack('scripts')
 </body>
 </html>
