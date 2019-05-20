@@ -54,45 +54,48 @@
             <input type="search" name="search" id="searchNav" title="Search" class="searchNav typeahead" placeholder="Search">
         </div>
         <!-- Additional header buttons / Auth and direct link to booking-->
-        @guest
-        <!-- <div class="control-panel"> -->
-            <div class="control-panel">
-                <a href="{{ route('login') }}" class="btn btn--sign">{{ __('label.login') }}</a>
+        <div class="control-panel">
+            <div class="col-md-8">
+                @guest
+                    <!-- <div class="control-panel"> -->
+                    <a href="{{ route('login') }}" class="btn btn--sign">{{ __('label.login') }}</a>
                 @if (Route::has('register'))
                     <a href="{{ route('register') }}" class="btn btn--sign">{{ __('Register') }}</a>
                 @endif
+                @else
+                    <!-- <div class="control-panel"> -->
+                    <div class="dropdown">
+                        <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown"> 
+                            {{ Auth::user()->name }}
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ route('profile.index') }}">{{ __('label.profile') }}</a></li>
+                            @if (Auth::user()->role == 1)
+                                <li><a href="{{ route('admin-home') }}">{{ __('label.Admin') }}</a></li>
+                            @endif
+                            <li>
+                                <a href="{{ route('logout') }}" data-toggle="modal" data-target="#logoutModal"
+                                    onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                </form>
+                            </li>
+                        </ul>
+                    </div> 
+                @endguest
             </div>
-        @else
-            <!-- <div class="control-panel"> -->
-            <div class="control-panel">
-                <div class="dropdown">
-                    <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown"> 
-                        {{ Auth::user()->name }}
-                    <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ route('profile.index') }}">{{ __('label.profile') }}</a></li>
-                        @if (Auth::user()->role == 1)
-                            <li><a href="{{ route('admin-home') }}">{{ __('label.Admin') }}</a></li>
-                        @endif
-                        <li>
-                            <a href="{{ route('logout') }}" data-toggle="modal" data-target="#logoutModal"
-                                onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                @csrf
-                            </form>
-                        </li>
-                    </ul>
-                </div> 
+            <div class="col-md-4">
+                <a href="{{ route('booking.index') }}" class="btn btn-md btn--warning btn--book btn-control--home">{{ __('label.book') }}</a>
             </div>
-        @endguest
+        </div>
     </div>
 </header>
 @push('scripts')
 <script type="text/javascript">
-    jQuery(document).ready(function() {
+    $(document).ready(function () {
         var engine = new Bloodhound({
             remote: {
                 url: '/search?q=%QUERY%',

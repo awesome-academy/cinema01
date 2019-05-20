@@ -12,6 +12,7 @@
 // Home page
 Route::get('/', 'HomeController@index')->name('home');
 Route::resource('movie-detail', 'MovieController');
+Route::resource('booking', 'BookingController');
 Route::group(['middleware' => 'user'], function() {
     Route::resource('choose-seat', 'ChooseSeatController');
     Route::resource('payment', 'PaymentController');
