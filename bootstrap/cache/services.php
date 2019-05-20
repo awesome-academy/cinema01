@@ -25,14 +25,16 @@
     21 => 'Illuminate\\View\\ViewServiceProvider',
     22 => 'BeyondCode\\DumpServer\\DumpServerServiceProvider',
     23 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
-    24 => 'Laravel\\Tinker\\TinkerServiceProvider',
-    25 => 'Carbon\\Laravel\\ServiceProvider',
-    26 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    27 => 'Yajra\\DataTables\\DataTablesServiceProvider',
-    28 => 'App\\Providers\\AppServiceProvider',
-    29 => 'App\\Providers\\AuthServiceProvider',
-    30 => 'App\\Providers\\EventServiceProvider',
-    31 => 'App\\Providers\\RouteServiceProvider',
+    24 => 'Laravel\\Socialite\\SocialiteServiceProvider',
+    25 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    26 => 'Carbon\\Laravel\\ServiceProvider',
+    27 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    28 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    29 => 'App\\Providers\\AppServiceProvider',
+    30 => 'App\\Providers\\AuthServiceProvider',
+    31 => 'App\\Providers\\EventServiceProvider',
+    32 => 'App\\Providers\\RouteServiceProvider',
+    33 => 'Laravel\\Socialite\\SocialiteServiceProvider',
   ),
   'eager' => 
   array (
@@ -161,6 +163,7 @@
     'translation.loader' => 'Illuminate\\Translation\\TranslationServiceProvider',
     'validator' => 'Illuminate\\Validation\\ValidationServiceProvider',
     'validation.presence' => 'Illuminate\\Validation\\ValidationServiceProvider',
+    'Laravel\\Socialite\\Contracts\\Factory' => 'Laravel\\Socialite\\SocialiteServiceProvider',
     'command.tinker' => 'Laravel\\Tinker\\TinkerServiceProvider',
     'NunoMaduro\\Collision\\Contracts\\Provider' => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
   ),
@@ -200,6 +203,9 @@
     array (
     ),
     'Illuminate\\Validation\\ValidationServiceProvider' => 
+    array (
+    ),
+    'Laravel\\Socialite\\SocialiteServiceProvider' => 
     array (
     ),
     'Laravel\\Tinker\\TinkerServiceProvider' => 

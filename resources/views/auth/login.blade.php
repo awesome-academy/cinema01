@@ -4,6 +4,11 @@
     <form class="login" method="POST" action="{{ route('login') }}">
         @csrf
         <p class="login__title">{{ __('label.Sign-in') }}<br><span class="login-edition">{{ __('label.welcome-to-aMovie') }}</span></p>
+        <div class="social social--colored">
+            <a href='{{ url('redirect/facebook') }}' class="social__variant fa fa-facebook"></a>
+            <a href='{{ url('redirect/google') }}' class="social__variant fa fa-google-plus"></a>
+        </div>
+        <p class="login__tracker">or</p>
         <div class="field-wrap">
             <input id="email" type='email' placeholder='{{ __('label.Email') }}' name='email' value="{{ old('email') }}" required autofocus class="login__input">
             @if ($errors->has('email'))

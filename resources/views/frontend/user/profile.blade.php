@@ -39,7 +39,11 @@
                                 <input type="text" class="form-control" id="mobile" name="mobile" value="{{ $user->mobile }}" placeholder="{{ __('label.plh_mobile') }}">
                             </div>
                             <div class="form-group">
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">{{ __('label.changePass') }}</button>
+                                @if (Auth::user()->password == Auth::user()->email)
+                                     <button type="button" class="btn btn-success btnCreatePass">{{ __('label.createPassLogin') }}</button>
+                                @else
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">{{ __('label.changePass') }}</button>
+                                @endif
                             </div>
                             <button type="submit" id="saveBtn" class="btn btn-primary">{{ __('label.save') }}</button>
                         </form>
@@ -216,5 +220,14 @@
             $('.print-error-msg').find('ul').append('<li>' + value + '</li>');
         });
     }
+    $('.btnCreatePass').click(function () {
+        if (confirm('{{ __('label.confirmCreatePass') }}'))
+        {
+            $.get("{{ route('profile.create') }}", function (data) {
+                alert(data.mess);
+                location.reload(); 
+            });
+        }
+    });
 </script>
 @endpush

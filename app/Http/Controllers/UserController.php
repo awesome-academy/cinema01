@@ -31,7 +31,18 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        if ($user->password == $user->email)
+        {
+            $pass = '123456';
+            $user->password = Hash::make($pass);
+            $user->save();
+
+            return response()->json(['mess' => __('label.successCreatePass', ['data' => $pass])]);
+        } else
+        {
+            return response()->json(['mess' => __('label.error')]);
+        }
     }
 
     /**

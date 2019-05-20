@@ -87,6 +87,7 @@ return [
     'chooseSeatType' => 'Choose Seat Type ...',
     'chooseStatus' => 'Choose Status ...',
     'confirmDelete' => 'Are You sure want to delete !',
+    'confirmCreatePass' => 'Are You sure want to create password login with your email!',
     'cinemaSave' => 'Cinema saved successfully!',
     'roomSave' => 'Room saved successfully!',
     'roomTypeSave' => 'Room type saved successfully!',
@@ -179,6 +180,7 @@ return [
     'save' => 'Save',
     'profileSave' => 'Change Profile Successfully!',
     'changePass' => 'Change Password',
+    'createPassLogin' => 'Create Pass Login',
     'passSave' => 'Change Password Successfully',
     'passFail' => 'Old Password Not Match',
     'home' => 'Home',
@@ -214,4 +216,7 @@ return [
     'tickets' => 'Tickets: ',
     'total' => 'Total: ',
     'purchase' => 'purchase',
+    //profile
+    'successCreatePass' => 'Create a successful application password! (Default: :data)',
+    'error' => 'error',
 ];
