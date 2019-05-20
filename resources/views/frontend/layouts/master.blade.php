@@ -32,6 +32,7 @@
     <!-- Custom css -->
     <link rel="stylesheet prefetch" href="{{ asset('bower_components/datepicker/index.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/swiper/dist/css/swiper.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap-rating/bootstrap-rating.css') }}">
     <link href="{{ asset('custom-css/css.css') }}" rel="stylesheet" />
 </head>
 <body>
@@ -61,8 +62,6 @@
     <script src="{{ asset('bower_components/xp_css/js/form.js') }}"></script>
     <!-- Custom -->
     <script src="{{ asset('bower_components/xp_css/js/custom.js') }}"></script>
-    <!-- Stars rate -->
-    <script src="{{ asset('bower_components/xp_css/js/external/jquery.raty.js') }}"></script>
     <!-- jQuery UI -->
     <script src="{{ asset('bower_components/jquery-ui/index.js') }}"></script>
     <!-- Magnific-popup -->
@@ -77,6 +76,8 @@
     <script src="{{ asset('typeahead/typeahead.bundle.min.js') }}"></script>
     <script src="{{ asset('bower_components/bootstrap-datepicker/index.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bower_components/swiper/dist/js/swiper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/bootstrap-rating/bootstrap-rating.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('custom-js/scripts.js') }}"></script>
     @stack('scripts')
 </body>
 </html>

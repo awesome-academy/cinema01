@@ -160,9 +160,13 @@
                             <a href='{{ route('movie-detail.show', ['id' => $data->id]) }}' class="movie__title">{{ __('label.movie_title', ['data' => $data->name]) }}</a>
                             <p class="movie__time">{{ __('label.movie_time', ['data' => $data->time]) }}</p>
                             <p class="movie__option">{{ __('label.movie_type', ['data' => $data->type]) }}</p>
-                            <div class="movie__rate">
-                                <div class="score"></div>
-                                <span class="movie__rating">{{ __('label.rate', ['data' => round($data->votes->avg('point'), 1)]) }}</span>
+                            <div class="movie__rate row">
+                                <div class="col-md-9">
+                                    <input type="hidden" class="rating" data-filled="fa fa-star" data-empty="fa fa-star-o" disabled="" value="{{ round($data->votes->avg('point'), 1) }}" />
+                                </div>
+                                <div class="col-md-3">
+                                    <span class="movie__rating">{{ __('label.rate', ['data' => round($data->votes->avg('point'), 1)]) }}</span>
+                                </div>
                             </div>               
                         </div>
                     </div>

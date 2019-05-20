@@ -13,6 +13,7 @@
 Route::get('/', 'HomeController@index')->name('home');
 Route::resource('movie-detail', 'MovieController');
 Route::resource('booking', 'BookingController');
+Route::resource('vote', 'VoteController');
 Route::group(['middleware' => 'user'], function() {
     Route::resource('choose-seat', 'ChooseSeatController');
     Route::resource('payment', 'PaymentController');

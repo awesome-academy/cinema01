@@ -36,6 +36,7 @@
     "mvo1": "https://github.com/nguyenthithu1612/mvo1.git",
     "bootstrap-datepicker": "http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js",
     "datepicker": "http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css",
-    "swiper": "^4.5.0"
+    "swiper": "^4.5.0",
+    "animate.css": "^3.7.0"
   }
 }
