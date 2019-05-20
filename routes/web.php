@@ -35,3 +35,5 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     Route::resource('showtime', 'ShowtimeController');
 });
 Route::get('/search', 'SearchController@searchFullText')->name('search');
+Route::get('/redirect/{social}', 'SocialAuthController@redirect');
+Route::get('/callback/{social}', 'SocialAuthController@callback');

@@ -45,3 +45,9 @@
 .swiper-container {
     padding-bottom: 70px;
 }
+.social--colored .social__variant.fa-google-plus {
+    background-color: #EA4335;
+}
+.social--colored .social__variant.fa-google-plus:after {
+    border-color: #EA4335;
+}
