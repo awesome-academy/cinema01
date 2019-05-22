@@ -1,4 +1,5 @@
 {
     "/typeahead/typeahead.bundle.min.js": "/typeahead/typeahead.bundle.min.js",
-    "/custom-css/css.css": "/custom-css/css.css"
+    "/custom-css/css.css": "/custom-css/css.css",
+    "/custom-js/scripts.js": "/custom-js/scripts.js"
 }

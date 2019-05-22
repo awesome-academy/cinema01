@@ -1,5 +1,7 @@
 @extends('frontend.layouts.master')
 @section('content')
+<input type="hidden" class="getIdMovie" value="1">
+<input type="hidden" class="getRouteMovie" value="{{ route('movie-detail.store') }}">
 <section class="container">
     <div class="order-container">
         <div class="order">
@@ -40,7 +42,10 @@
             </div>
         </div>
         <h2 class="page-heading">{{ __('label.pickTime') }}</h2>
-        <div class="time-select time-select--wide"></div>
+        <div class="choose-container">
+            <div class="clearfix"></div>
+            <div class="time-select"></div>
+        </div>
     </div>
 </section>
 <div class="clearfix"></div>
@@ -64,95 +69,4 @@
     <input type="hidden" name="idFilter" class="idFilter">
     <input type="hidden" name="dateFilter" class="dateFilter">
 </form>
-@stop
-@push('scripts')
-<script type="text/javascript">
-    $('.swiper-slide').click(function (e) {
-        //visual iteractive for choose
-        $('.swiper-slide').removeClass('film--choosed');
-        $(this).addClass('film--choosed');
-        //data element init
-        var chooseFilm = $(this).attr('data-film');
-        var filmId = $(this).attr('data-id');
-        $('.choose-indector--film').find('.choosen-area').text(chooseFilm);
-        $('.idFilter').val(filmId);
-        $('.class-hide').hide();
-        runFilter();
-    });
-    var swiper = new Swiper('.swiper-container', {
-        effect: 'coverflow',
-        grabCursor: false,
-        centeredSlides: true,
-        slidesPerView: 'auto',
-        coverflowEffect: {
-            rotate: 50,
-            stretch: -30,
-            depth: 100,
-            modifier: 1,
-            slideShadows : true,
-        },
-        pagination: {
-            el: '.swiper-pagination',
-        },
-    });
-    function runFilter () {
-        $("#datepicker").datepicker({
-            autoclose: true,
-            todayHighlight: true,
-        }).change(function () {
-            var date = $('.inputDate').val();
-            var input = new Date(date + 'T17:00:00Z');
-            var today = new Date;
-            if (input >= today)
-            {
-                $('.dateFilter').val(date);
-                $.ajax({
-                    data: $('#dateAndId').serialize(),
-                    url: "{{ route('movie-detail.store') }}",
-                    type: "POST",
-                    dataType: 'json',
-                    success: function (data) {
-                        var html = '';
-                            $.each( data, function(key, cinema) {
-                                html += `<div class="time-select__group">
-                                    <div class="col-sm-4">
-                                        <p class="time-select__place">` + cinema.name + `</p>
-                                    </div>
-                                    <ul class="col-sm-8 items-wrap">`;
-                                    $.each(cinema.rooms, function(key2, room) {
-                                        $.each(room.showtimes, function(key3, showtime) {
-                                            html += `<li class='time-select__item selectShowtime' data-time='` + showtime.timestart.substr(11, 5) + `' data-id=` + showtime.id + ` onclick='myFun()'>` + showtime.timestart.substr(11, 5) + `</li>`;
-                                        });
-                                    });
-                                    html += `</ul></div>`;
-                            });
-                            html += `<div class="choose-indector choose-indector--time">
-                                <strong>{{ __('label.choosen') }}</strong><span class="choosen-area"></span>
-                            </div>`;
-                        $('.time-select--wide').html(html);
-                    },
-                    error: function(data) {
-                        console.log(data);
-                    }
-                });
-            } else 
-            {
-                $('.time-select--wide').html('');
-            }
-        }).datepicker('update', new Date());
-    };
-    function myFun () { 
-       $('.time-select__item').click(function () {
-            $('.time-select__item').removeClass('active');
-            $(this).addClass('active');
-            //data element init
-            var chooseTime = $(this).attr('data-time');
-            var id = $(this).attr('data-id');
-            $('.choose-indector--time').find('.choosen-area').text(chooseTime);
-            $('.class-hide').show();
-            //gán showtime_id form
-            $('#showtime_id').val(id);
-        });
-    };
-</script>
-@endpush
+@endsection

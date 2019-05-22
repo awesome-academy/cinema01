@@ -2,12 +2,9 @@
 @section('content')
 <!-- Main content -->
 <input type="hidden" class="getIdMovie" value="{{ $movie->status }}">
-<div class="choose-film">
-    <div class="swiper-container">
-      <div class="swiper-wrapper">
-      </div>
-    </div>
-</div>
+<input type="hidden" class="getRouteMovie" value="{{ route('movie-detail.store') }}">
+<input type="hidden" class="getRouteVote" value="{{ route('vote.index') }}">
+<input type="hidden" class="getRouteVoteStore" value="{{ route('vote.store') }}">
 <section class="container">
     <div class="col-sm-12">
         <div class="movie">
@@ -15,19 +12,24 @@
             <div class="movie__info">
                 <div class="col-sm-4 col-md-3 movie-mobile">
                     <div class="movie__images">
-                        <span class="movie__rating">{{ __('label.movie_text', ['data' => round($vote, 1)]) }}</span>
+                        <span class="movie__rating"></span>
                         <img class="resize-cover" alt='' src="{{ asset(config('app.upload_cover') . $movie->image) }}">
                         <div class="swiper-container play_btn">
-                          <div class="swiper-wrapper" >
+                            <div class="swiper-wrapper" >
                                 <div class="media-video swiper-slide-visible swiper-slide-active">
-                                <a href="{{ __($movie->trailer) }}" class="movie__media-item fa fa-youtube-play">
-                                </a>
-                              </div>
-                          </div>
+                                    <a href="{{ __($movie->trailer) }}" class="movie__media-item fa fa-youtube-play">
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-8 col-md-9">
+                    <input type="hidden" class="rating" data-filled="fa fa-star" data-empty="fa fa-star-o" value="{{ $vote }}"/><a class="ng"></a>
+                    <p class="movie__option">
+                        <strong>{{ __('label.yourVote') }}</strong>
+                        <a class='yourVote'>{{ $vote }}</a>{{ __('/5') }}
+                    </p>
                     <p class="movie__time">{{ __('label.movie_time', ['data' => $movie->time]) }}</p>
                     <p class="movie__option"><strong>{{ __('label.country') }}</strong>{{ $movie->country }}</p>
                     <p class="movie__option"><strong>{{ __('label.director') }}</strong>{{ $movie->directors }}</p>
@@ -79,71 +81,9 @@
     <input type="hidden" name="idFilter" class="idFilter" value="{{ $movie->id }}">
     <input type="hidden" name="dateFilter" class="dateFilter">
 </form>
-@stop
-@push('scripts')
-<script type="text/javascript">
-    $("#datepicker").datepicker({
-        autoclose: true,
-        todayHighlight: true,
-    }).change(function () {
-        $('.class-hide').hide();
-        var date = $('.inputDate').val();
-        var input = new Date(date + 'T17:00:00Z');
-        var today = new Date;
-        if (input >= today)
-        {
-            $('.dateFilter').val(date);
-            $.ajax({
-                data: $('#dateAndId').serialize(),
-                url: "{{ route('movie-detail.store') }}",
-                type: "POST",
-                dataType: 'json',
-                success: function (data) {
-                    var status = $('.getIdMovie').val();
-                    var html = '';
-                    if (status == 2)
-                    {
-                        html += `<div class="contact">
-                            <p class="contact__title">{{ __('Comming Soon') }}</p>
-                        </div>`;
-                    } else if (status == 1) {
-                        $.each( data, function(key, cinema) {
-                            html += `<div class="time-select__group">
-                                <div class="col-sm-4">
-                                    <p class="time-select__place">` + cinema.name + `</p>
-                                </div>
-                                <ul class="col-sm-8 items-wrap">`;
-                                $.each(cinema.rooms, function(key2, room) {
-                                    $.each(room.showtimes, function(key3, showtime) {
-                                        html += `<li class='time-select__item selectShowtime' data-time='` + showtime.timestart.substr(11, 5) + `' data-id=` + showtime.id + ` onclick='myFun()'>` + showtime.timestart.substr(11, 5) + `</li>`;
-                                    });
-                                });
-                                html += `</ul></div>`;
-                        });
-                        html += `<div class="choose-indector choose-indector--time">
-                            <strong>{{ __('label.choosen') }}</strong><span class="choosen-area"></span>
-                        </div>`;
-                    }
-                    $('.time-select').html(html);
-                },
-                error: function(data) {
-                    console.log(data);
-                }
-            });
-        }
-    }).datepicker('update', new Date());
-    function myFun () { 
-       $('.time-select__item').click(function () {
-            $('.time-select__item').removeClass('active');
-            $(this).addClass('active');
-            //data element init
-            var chooseTime = $(this).attr('data-time');
-            var id = $(this).attr('data-id');
-            $('.choose-indector--time').find('.choosen-area').text(chooseTime);
-            $('.class-hide').show();
-            //gán showtime_id form
-            $('#showtime_id').val(id);
-        });
-    }
-</script>
-@endpush
+<form id="voteMovie">
+    @csrf
+    <input type="hidden" name="movieId" class="movieId" value="{{ $movie->id }}">
+    <input type="hidden" name="point" class="point">
+</form>
+@endsection

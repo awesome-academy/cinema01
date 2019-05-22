@@ -25,6 +25,7 @@ return [
     'movie_text' => ':data',
     'movie_type' => ':data',
     'movie_title' => ':data',
+    'yourVote' => 'Your Point: ',
     'country' => 'Country: ',
     'director' => 'Director: ',
     'product' => 'Product: ',

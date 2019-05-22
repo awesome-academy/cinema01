@@ -8,6 +8,8 @@ use App\Models\Movie;
 use App\Models\Showtime;
 use App\Models\Room;
 use App\Models\Cinema;
+use App\Models\Vote;
+use Auth;
 
 use DB;
 
@@ -62,7 +64,11 @@ class MovieController extends Controller
     public function show($id)
     {
         $movie = Movie::findOrFail($id);
-        $vote = Movie::findOrFail($id)->votes->avg('point');
+        $v = Vote::where('movie_id', $id)->where('user_id', Auth::id())->first();
+        $vote = 0;
+        if ($v != null) {
+            $vote = $v->point;   
+        }
         $movieFilter = function ($query) use ($id) {
             $query->where('movie_id', $id);
         };
