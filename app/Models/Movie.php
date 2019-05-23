@@ -31,6 +31,11 @@ class Movie extends Model
         return $this->hasMany('App\Models\Showtime');
     }
 
+    public function slide()
+    {
+        return $this->hasOne('App\Models\Slide');
+    }
+
     protected function getListCinema($id)
     {
         $a = Movie::with('showtimes.room.cinema')->where('id', $id)->firstOrFail();

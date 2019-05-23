@@ -69,4 +69,7 @@
     <input type="hidden" name="idFilter" class="idFilter">
     <input type="hidden" name="dateFilter" class="dateFilter">
 </form>
-@endsection
+@stop
+@push('scripts')
+    <script type="text/javascript" src="{{ asset('custom-js/booking.js') }}"></script>
+@endpush

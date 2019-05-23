@@ -33,7 +33,9 @@
     <link rel="stylesheet prefetch" href="{{ asset('bower_components/datepicker/index.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/swiper/dist/css/swiper.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap-rating/bootstrap-rating.css') }}">
-    <link href="{{ asset('custom-css/css.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('custom-css/css.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('bower_components/jquery.fancybox.min.css/index.css') }}" />
+    @stack('styles')
 </head>
 <body>
     <div class="wrapper">
@@ -78,6 +80,7 @@
     <script type="text/javascript" src="{{ asset('bower_components/swiper/dist/js/swiper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bower_components/bootstrap-rating/bootstrap-rating.js') }}"></script>
     <script type="text/javascript" src="{{ asset('custom-js/scripts.js') }}"></script>
+    <script src="{{ asset('bower_components/jquery.fancybox.min/index.js') }}"></script>
     @stack('scripts')
 </body>
 </html>
