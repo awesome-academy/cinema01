@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    var notFound = $('.notFound').val();
+    var linkUploadCover = $('.linkUploadCover').val();
+    var routeMovieDetail = $('.routeMovie-detail').val();
     var engine = new Bloodhound({
         remote: {
             url: '/search?q=%QUERY%',
@@ -18,14 +21,12 @@ $(document).ready(function () {
             return data.name;
         },
         templates: {
-            empty: [
-                '<div class="list-group search-results-dropdown"><div class="list-group-item">{{ __('label.notFound') }}</div></div>'
-            ],
-            header: '<div class="container"><div class="row">',
+            empty: `<div class="list-group search-results-dropdown"><div class="list-group-item">` + notFound + `</div></div>`,
+            header: `<div class="container"><div class="row">`,
             suggestion: function (data) {
                 return `<div class="col-sm">
-                    <a href='{{ route('movie-detail.index') }}/` + data.id + `'>
-                        <img src="{{ asset(config('app.upload_cover')) }}/` + data.image + `" title='` + data.name + `'' class="img-thumbnail custom-img-thumbnail">
+                    <a href='` + routeMovieDetail + `/` + data.id + `'>
+                        <img src="` + linkUploadCover + `/` + data.image + `" title='` + data.name + `'' class="img-thumbnail custom-img-thumbnail">
                     </a>
                 </div>`;
             }

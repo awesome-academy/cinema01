@@ -134,3 +134,9 @@ div.play-btn:hover {
 .movie-best {
     margin-top: -6px;
 }
+.lang-right {
+    margin-right: -64px;
+}
+.color-white {
+    color: white;
+}

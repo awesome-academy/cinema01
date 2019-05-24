@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap-rating/bootstrap-rating.css') }}">
     <link rel="stylesheet" href="{{ asset('custom-css/css.css') }}"/>
     <link rel="stylesheet" href="{{ asset('bower_components/jquery.fancybox.min.css/index.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bower_components/flag-icon-css/css/flag-icon.css') }}" />
     @stack('styles')
 </head>
 <body>
@@ -54,10 +55,10 @@
     <script src="{{ asset('bower_components/xp_css/js/external/jquery-migrate-1.2.1.min.js') }}"></script>
     <!-- Mobile menu -->
     <script src="{{ asset('bower_components/xp_css/js/jquery.mobile.menu.js') }}"></script>
-     <!-- Select -->
+    <!-- Select -->
     <script src="{{ asset('bower_components/xp_css/js/external/jquery.selectbox-0.2.min.js') }}"></script>
     <!-- Swiper slider -->
-        <script src="{{ asset('bower_components/xp_css/js/external/idangerous.swiper.min.js') }}"></script>
+    <script src="{{ asset('bower_components/xp_css/js/external/idangerous.swiper.min.js') }}"></script>
     <!-- Form element -->
     <script src="{{ asset('bower_components/xp_css/js/external/form-element.js') }}"></script>
     <!-- Form validation -->
