@@ -26,12 +26,12 @@ class HomeController extends Controller
             $m[$key]['point'] = $data->votes->avg('point');
         }        
         $best = $m->sortByDesc('point')->take(config('const.best_movie'));
-        $new = Movie::where('status', 1)
+        $new = Movie::where('status', config('const.showing_movie_status'))
             ->with('votes')
             ->orderBy('day_start', 'DESC')
             ->take(config('const.new_movie'))
             ->get();
-        $slides = Slide::where('status', 1)->get();
+        $slides = Slide::where('status', config('const.showing_movie_status'))->get();
 
         return view('frontend.homepages.home', compact('best', 'new', 'slides'));
     }

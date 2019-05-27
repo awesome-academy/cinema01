@@ -34,6 +34,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     Route::resource('seat_col', 'SeatColController');
     Route::resource('movie', 'MovieController');
     Route::resource('showtime', 'ShowtimeController');
+    Route::resource('slide', 'SlideController');
 });
 Route::get('/search', 'SearchController@searchFullText')->name('search');
 Route::get('/redirect/{social}', 'SocialAuthController@redirect');
