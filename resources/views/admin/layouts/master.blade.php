@@ -57,6 +57,7 @@
     <script src="{{ asset('bower_components/bootstrap.min.4.1.3/index.js') }}"></script>
     <!-- Jquery Validate -->
     <script src="{{ asset('bower_components/jquery.validate/index.js') }}"></script>
+    <script src="{{ asset('bower_components/chart/index.js') }}"></script>
     <!-- App scripts -->
     @stack('scripts')
 </body>

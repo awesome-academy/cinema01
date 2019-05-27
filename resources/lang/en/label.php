@@ -220,4 +220,13 @@ return [
     //profile
     'successCreatePass' => 'Create a successful application password! (Default: :data)',
     'error' => 'error',
+    //Charts
+    'chart_vote' => 'Votes',
+    'chart_ticket' => 'Ticket',
+    'chart_rate' => 'Rating',
+    'chart_detail' => 'View Details',
+    'chart_user' => ':data Users!',
+    'chart_movie' => ':data Movies!',
+    'chart_ticket' => ':data Tickets!',
+    'chart_money' => 'Thu Nhập: :data Vnđ',
 ];
