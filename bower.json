@@ -37,6 +37,8 @@
     "bootstrap-datepicker": "http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js",
     "datepicker": "http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css",
     "swiper": "^4.5.0",
-    "animate.css": "^3.7.0"
+    "animate.css": "^3.7.0",
+    "jquery.fancybox.min.css": "https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css",
+    "jquery.fancybox.min": "https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"
   }
 }

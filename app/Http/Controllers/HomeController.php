@@ -8,6 +8,8 @@ use App\Models\Movie;
 
 use App\Models\Vote;
 
+use App\Models\Slide;
+
 use DB;
 
 class HomeController extends Controller
@@ -24,12 +26,14 @@ class HomeController extends Controller
             $m[$key]['point'] = $data->votes->avg('point');
         }        
         $best = $m->sortByDesc('point')->take(config('const.best_movie'));
-        $new = Movie::with('votes')
+        $new = Movie::where('status', 1)
+            ->with('votes')
             ->orderBy('day_start', 'DESC')
             ->take(config('const.new_movie'))
             ->get();
+        $slides = Slide::where('status', 1)->get();
 
-        return view('frontend.homepages.home', compact('best', 'new'));
+        return view('frontend.homepages.home', compact('best', 'new', 'slides'));
     }
 
     /**

@@ -14,13 +14,8 @@
                     <div class="movie__images">
                         <span class="movie__rating"></span>
                         <img class="resize-cover" alt='' src="{{ asset(config('app.upload_cover') . $movie->image) }}">
-                        <div class="swiper-container play_btn">
-                            <div class="swiper-wrapper" >
-                                <div class="media-video swiper-slide-visible swiper-slide-active">
-                                    <a href="{{ __($movie->trailer) }}" class="movie__media-item fa fa-youtube-play">
-                                    </a>
-                                </div>
-                            </div>
+                        <div class="button-video play-btn">
+                            <a data-fancybox="gallery" href="{{ $movie->trailer }}"><i class="fa fa-play text-center" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
@@ -37,9 +32,6 @@
                     <p class="movie__option"><strong>{{ __('label.type') }}</strong>{{ $movie->type }}</p>
                     <p class="movie__option"><strong>{{ __('label.actor') }}</strong>{{ $movie->cast }}</p>
                     <p class="movie__option"><strong>{{ __('label.date') }}</strong>{{ $movie->day_start }}</p>
-                    <div class="movie__btns movie__btns--full">
-                        <a href="#" class="btn btn-md btn--warning">{{ __('label.book_ticket') }}</a>
-                    </div>
                 </div>
             </div>  
             <div class="clearfix"></div>
