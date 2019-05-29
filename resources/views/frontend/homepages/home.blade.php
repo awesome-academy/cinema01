@@ -63,10 +63,10 @@
                             <p class="movie__option">{{ __('label.movie_type', ['data' => $data->type]) }}</p>
                             <div class="movie__rate row">
                                 <div class="col-md-9">
-                                    <input type="hidden" class="rating" data-filled="fa fa-star" data-empty="fa fa-star-o" disabled="" value="{{ round($data->votes->avg('point'), 1) }}" />
+                                    <input type="hidden" class="rating" data-filled="fa fa-star" data-empty="fa fa-star-o" disabled="" value="{{ round($data->votes->avg('point'), config('const.round')) }}" />
                                 </div>
                                 <div class="col-md-3">
-                                    <span class="movie__rating">{{ __('label.rate', ['data' => round($data->votes->avg('point'), 1)]) }}</span>
+                                    <span class="movie__rating">{{ __('label.rate', ['data' => round($data->votes->avg('point'), config('const.round'))]) }}</span>
                                 </div>
                             </div>               
                         </div>
@@ -86,8 +86,8 @@
 <div class="clearfix"></div>
 @stop
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('custom-css/home.css') }}">
+<link rel="stylesheet" href="{{ asset('custom-css/home.css') }}">
 @endpush
 @push('scripts')
-    <script type="text/javascript" src="{{ asset('custom-js/home.js') }}"></script>
+<script type="text/javascript" src="{{ asset('custom-js/home.js') }}"></script>
 @endpush
